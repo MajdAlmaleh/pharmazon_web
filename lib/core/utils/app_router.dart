@@ -5,6 +5,8 @@ import 'package:pharmazon_web/core/utils/service_locator.dart';
 import 'package:pharmazon_web/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:pharmazon_web/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon_web/features/auth/presentation/views/auth_view.dart';
+import 'package:pharmazon_web/features/home/data/repos/home_repo_impl.dart';
+import 'package:pharmazon_web/features/home/presentation/manager/add_item/add_item_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/views/home_view.dart';
 import 'package:pharmazon_web/features/welcome/views/welcome_view.dart';
 
@@ -13,12 +15,8 @@ abstract class AppRouter {
   static const kAuthView = '/authView';
   static const kHomeView = '/HomeView';
 
-  static Future<GoRouter> setupRouter() async {
+  static Future<GoRouter> setupRouter(String? token) async {
     // Create storage
-    const storage = FlutterSecureStorage();
-
-    // Read value
-    String? token = await storage.read(key: 'token');
 
     return GoRouter(routes: [
       GoRoute(
@@ -41,7 +39,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) =>  BlocProvider(
+          create: (context) => AddItemCubit(getIt<HomeRepoImpl>()),
+          child:const HomeView(),
+        ),
       ),
     ]);
   }

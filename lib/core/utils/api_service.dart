@@ -59,7 +59,7 @@ class ApiService {
   }
 
   Future<dynamic> post(
-      {required String urlEndPoint,
+      {required String url,
       @required dynamic body,
       @required String? token}) async {
     Map<String, String> headers = {'Accept': 'application/json'};
@@ -69,7 +69,7 @@ class ApiService {
     }
 
     Response response = await _dio.post(
-      urlEndPoint,
+      url,
       options: Options(headers: headers),
       data: body,
     );
