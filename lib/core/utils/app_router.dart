@@ -15,7 +15,7 @@ abstract class AppRouter {
   static const kAuthView = '/authView';
   static const kHomeView = '/HomeView';
 
-  static Future<GoRouter> setupRouter(String? token) async {
+  static GoRouter setupRouter(String? token)  {
     // Create storage
 
     return GoRouter(routes: [

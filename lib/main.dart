@@ -15,7 +15,7 @@ void main() async {
 
   await Future.wait([languageCubit.loadLanguage(),tokenCubit.fetchSavedToken()]);
 
-  final router = await AppRouter.setupRouter(tokenCubit.state);
+  final router =  AppRouter.setupRouter(tokenCubit.state);
   setupServiceLocator();
   runApp(MultiBlocProvider(
     providers: [  BlocProvider(create:  (context) => LanguageCubit()),BlocProvider(create:  (context) => TokenCubit())],
