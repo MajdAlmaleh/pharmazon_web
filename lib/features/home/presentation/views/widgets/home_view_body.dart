@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharmazon_web/blocs/language_cubit/language_cubit.dart';
+import 'package:pharmazon_web/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon_web/core/utils/api_service.dart';
 import 'package:pharmazon_web/core/utils/app_router.dart';
 import 'package:pharmazon_web/core/utils/functions/custom_snack_bar.dart';
@@ -34,6 +35,12 @@ late int price;
 
 class _HomeViewBodyState extends State<HomeViewBody> {
   @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<TokenCubit>(context).fetchSavedToken();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -55,20 +62,22 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               child: Column(
                 children: [
                   AuthButton(
-                      onPressed: () async {
-
+                      onPressed: () {
                         //TODO this must be from a repo file
-                        await HomeRepoImpl(getIt<ApiService>()).logOut();
-                        // ignore: use_build_context_synchronously
                         GoRouter.of(context).go(AppRouter.kWelcomeView);
+                        HomeRepoImpl(getIt<ApiService>()).logOut(
+                         );
+                       // BlocProvider.of<TokenCubit>(context).deleteSavedToken();
+
+                      
                       },
                       text: 'logout'),
                   AuthButton(
                       onPressed: () async {
-                        BlocProvider.of<LanguageCubit>(context).changeLanguage();
+                        BlocProvider.of<LanguageCubit>(context)
+                            .changeLanguage();
                       },
                       text: S.of(context).language),
-
                   TextFormField(
                     onSaved: (newValue) {
                       scientificName = newValue!;
@@ -104,10 +113,16 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                       price = int.parse(newValue!);
                     },
                   ),
-
                   AuthButton(
-                      onPressed: ()  {
-                          BlocProvider.of<AddItemCubit>(context).addMedicine(scientificName: scientificName, commerialName: commerialName, calssification: calssification, manufactureCompany: manufactureCompany, quantityAvailable: quantityAvailable, expireDate: expireDate, price: price);
+                      onPressed: () {
+                        BlocProvider.of<AddItemCubit>(context).addMedicine(
+                            scientificName: scientificName,
+                            commerialName: commerialName,
+                            calssification: calssification,
+                            manufactureCompany: manufactureCompany,
+                            quantityAvailable: quantityAvailable,
+                            expireDate: expireDate,
+                            price: price);
                       },
                       text: 'add'),
                 ],

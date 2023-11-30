@@ -18,6 +18,7 @@ class WelcomeViewBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
+
             Image.asset(
               AssetsData.logo,
             ),

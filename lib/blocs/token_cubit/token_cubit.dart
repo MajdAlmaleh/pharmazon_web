@@ -10,10 +10,11 @@ class TokenCubit extends Cubit<String?> {
     String? token = await storage.read(key: 'token');
     emit(token);
   }
+
   Future<void> storeToken(String token) async {
     const storage = FlutterSecureStorage();
     // Read value
-     await storage.write(key: 'token', value: token);
+    await storage.write(key: 'token', value: token);
     emit(token);
   }
 

@@ -5,18 +5,15 @@ import 'package:pharmazon_web/constants.dart';
 import 'package:pharmazon_web/core/errors/failures.dart';
 import 'package:pharmazon_web/core/utils/api_service.dart';
 import 'package:pharmazon_web/features/auth/data/repos/auth_repo.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:universal_platform/universal_platform.dart';
-
 class AuthRepoImpl implements AuthRepo {
   final ApiService _apiService;
-final TokenCubit tokenCubit = TokenCubit();
+  final TokenCubit tokenCubit = TokenCubit();
   AuthRepoImpl(this._apiService);
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> signInWithEmailAndPassword(
       {required String phoneNumber, required String password}) async {
-   
 
     try {
       final response = await _apiService.post(
@@ -30,9 +27,7 @@ final TokenCubit tokenCubit = TokenCubit();
         token: null, // Replace with your token if needed
       );
 
-      
-     await tokenCubit.storeToken(response['token']);
-
+      await tokenCubit.storeToken(response['token']);
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -47,7 +42,6 @@ final TokenCubit tokenCubit = TokenCubit();
       {required String username,
       required String phoneNumber,
       required String password}) async {
-   
 
     try {
       final response = await _apiService.post(
@@ -62,7 +56,7 @@ final TokenCubit tokenCubit = TokenCubit();
         token: null,
         // Replace with your token if needed
       );
-   await  tokenCubit.storeToken(response['token']);
+      await tokenCubit.storeToken(response['token']);
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:pharmazon_web/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon_web/constants.dart';
 import 'package:pharmazon_web/core/errors/failures.dart';
@@ -8,23 +9,25 @@ import 'package:pharmazon_web/features/home/data/repos/home_repo.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiService _apiService;
-  final tokenCubit = TokenCubit();
+  final TokenCubit tokenCubit;
 
-  HomeRepoImpl(this._apiService);
+  HomeRepoImpl(this._apiService) : tokenCubit = GetIt.instance<TokenCubit>();
   @override
   Future<void> logOut() async {
-    await _apiService.delete(
-        urlEndPoint: '$kBaseUrl/logout',
-        body: {
-          'api_token': tokenCubit.state,
-        },
-        token: null
+    try {
+      await _apiService.delete(
+          urlEndPoint: '$kBaseUrl/logout',
+          body: {
+            'api_token': tokenCubit.state,
+          },
+          token: null
 
-        // Replace with your token if needed
-        );
-
-    // Read value
-    tokenCubit.deleteSavedToken();
+          // Replace with your token if needed
+          );
+       tokenCubit.deleteSavedToken();
+    } on Exception catch (e) {
+      print(e);
+    }
   }
 
   @override

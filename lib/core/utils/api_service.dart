@@ -25,7 +25,7 @@ class ApiService {
         await _dio.get(urlEndPoint, options: Options(headers: headers));
 
     if (response.statusCode == 200 || response.statusCode == 201) {
-      response.data;
+     return response.data;
     } else {
       throw Exception(
           'there is a problem with status code ${response.statusCode}');
