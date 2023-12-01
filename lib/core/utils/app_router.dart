@@ -15,15 +15,23 @@ abstract class AppRouter {
   static const kAuthView = '/authView';
   static const kHomeView = '/HomeView';
 
-  static GoRouter setupRouter(String? token)  {
+  static GoRouter setupRouter(String? token) {
     // Create storage
 
     return GoRouter(routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) =>
-            token != null ? const HomeView() : const WelcomeView(),
-      ),
+      if (token == null)
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const WelcomeView(),
+        ),
+      if (token != null)
+        GoRoute(
+          path: '/',
+          builder: (context, state) =>  BlocProvider(
+            create: (context) => AddItemCubit(getIt<HomeRepoImpl>()),
+            child:const HomeView(),
+          ),
+        ),
       GoRoute(
         path: kWelcomeView,
         builder: (context, state) => const WelcomeView(),
@@ -39,9 +47,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) =>  BlocProvider(
+        builder: (context, state) => BlocProvider(
           create: (context) => AddItemCubit(getIt<HomeRepoImpl>()),
-          child:const HomeView(),
+          child: const HomeView(),
         ),
       ),
     ]);

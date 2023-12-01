@@ -24,7 +24,7 @@ class HomeRepoImpl implements HomeRepo {
 
           // Replace with your token if needed
           );
-       tokenCubit.deleteSavedToken();
+      tokenCubit.deleteSavedToken();
     } on Exception catch (e) {
       print(e);
     }
@@ -39,13 +39,12 @@ class HomeRepoImpl implements HomeRepo {
       required int quantityAvailable,
       required String expireDate,
       required int price}) async {
-    final tokenCubit = TokenCubit();
     try {
       final response = await _apiService.post(
-          url: '$kBaseUrl/pharma',
+          url: '$kBaseUrl/store',
           body: {
             'scientific_name': scientificName,
-            'commerial_name': commerialName,
+            'commercial_name': commerialName,
             'calssification': calssification,
             'manufacture_company': manufactureCompany,
             'quantity_available': quantityAvailable,
@@ -53,7 +52,7 @@ class HomeRepoImpl implements HomeRepo {
             'price': price,
           },
           token: tokenCubit.state);
-
+      print(response);
       return right(response);
     } on Exception catch (e) {
       if (e is DioException) {

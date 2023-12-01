@@ -59,21 +59,19 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               return const CustomLoading();
             }
             return Form(
+              key: formKey,
               child: Column(
                 children: [
                   AuthButton(
                       onPressed: () {
                         //TODO this must be from a repo file
                         GoRouter.of(context).go(AppRouter.kWelcomeView);
-                        HomeRepoImpl(getIt<ApiService>()).logOut(
-                         );
-                       // BlocProvider.of<TokenCubit>(context).deleteSavedToken();
-
-                      
+                        HomeRepoImpl(getIt<ApiService>()).logOut();
+                        // BlocProvider.of<TokenCubit>(context).deleteSavedToken();
                       },
                       text: 'logout'),
                   AuthButton(
-                      onPressed: () async {
+                      onPressed: ()  {
                         BlocProvider.of<LanguageCubit>(context)
                             .changeLanguage();
                       },
@@ -115,6 +113,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   ),
                   AuthButton(
                       onPressed: () {
+                        formKey.currentState!.save();
                         BlocProvider.of<AddItemCubit>(context).addMedicine(
                             scientificName: scientificName,
                             commerialName: commerialName,
