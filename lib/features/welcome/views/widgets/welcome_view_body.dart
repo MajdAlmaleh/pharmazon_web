@@ -11,8 +11,7 @@ class WelcomeViewBody extends StatelessWidget {
   const WelcomeViewBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
+    return  SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -48,7 +47,7 @@ class WelcomeViewBody extends StatelessWidget {
                 text: kSignUp),
           ],
         ),
-      ),
+    
     );
   }
 }

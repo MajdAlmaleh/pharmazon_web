@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:pharmazon_web/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon_web/constants.dart';
 import 'package:pharmazon_web/core/errors/failures.dart';
+import 'package:pharmazon_web/core/shared_models/classifications_model.dart';
+import 'package:pharmazon_web/core/shared_models/medicine_model.dart';
 import 'package:pharmazon_web/core/utils/api_service.dart';
 import 'package:pharmazon_web/features/home/data/repos/home_repo.dart';
 
@@ -16,7 +18,7 @@ class HomeRepoImpl implements HomeRepo {
   Future<void> logOut() async {
     try {
       await _apiService.delete(
-          urlEndPoint: '$kBaseUrl/logout',
+          url: '$kBaseUrl/logout',
           body: {
             'api_token': tokenCubit.state,
           },
@@ -52,8 +54,78 @@ class HomeRepoImpl implements HomeRepo {
             'price': price,
           },
           token: tokenCubit.state);
-      print(response);
       return right(response);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ClassificationsModel>>>
+      fetchClassifications() async {
+    //make the token with the token cubit
+    await tokenCubit.fetchSavedToken();
+
+    try {
+      final data = await _apiService.get(
+        url: '$kBaseUrl/getAll',
+        token: tokenCubit.state,
+      );
+      List<ClassificationsModel> classifications = [];
+      for (var item in data['classifications']) {
+        classifications.add(ClassificationsModel(clssification: item));
+      }
+
+      return Right(classifications);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<MedicineModel>>> fetchMedicineOfClassification(
+      {required String classification}) async {
+    try {
+      final data = await _apiService.get(
+        url: '$kBaseUrl/getAllMedicine?calssification=$classification',
+        token: tokenCubit.state,
+      );
+      List<MedicineModel> medicines = [];
+      for (var item in data['medicines']) {
+        medicines.add(MedicineModel.fromJson(item));
+      }
+
+      return Right(medicines);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, MedicineModel>> editQuantity(
+      {required String id, required dynamic quantity}) async {
+    try {
+      final response = await _apiService.post(
+          url: '$kBaseUrl/edit',
+          body: {
+            "id": id,
+            "quantity": quantity,
+          },
+          token: tokenCubit.state);
+
+      MedicineModel medicines = MedicineModel.fromJson(response['medicine']);
+     
+
+      return right(medicines);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));

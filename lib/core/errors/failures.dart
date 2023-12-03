@@ -41,8 +41,7 @@ class ServerFailure extends Failure {
       return ServerFailure('Your request not found, Please try later!');
     } else if (statusCode == 500) {
       return ServerFailure('Internal Server error, Please try later');
-    } 
-     else if (statusCode == 422) {
+    } else if (statusCode == 422) {
       return ServerFailure((response['message']).toString().split('.').first);
     } else {
       return ServerFailure('Oops! There was an Error, Please try again');

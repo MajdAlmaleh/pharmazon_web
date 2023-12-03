@@ -1,19 +1,29 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pharmazon_web/core/shared_models/medicine_model.dart';
 import 'package:pharmazon_web/core/utils/service_locator.dart';
+import 'package:pharmazon_web/core/widgets/medicine_details.dart';
 import 'package:pharmazon_web/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:pharmazon_web/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon_web/features/auth/presentation/views/auth_view.dart';
 import 'package:pharmazon_web/features/home/data/repos/home_repo_impl.dart';
-import 'package:pharmazon_web/features/home/presentation/manager/add_item/add_item_cubit.dart';
+import 'package:pharmazon_web/features/home/presentation/manager/add_item_cubit/add_item_cubit.dart';
+import 'package:pharmazon_web/features/home/presentation/manager/classifications_cubit/classifications_cubit.dart';
+import 'package:pharmazon_web/features/home/presentation/manager/edit_quantity_cubit/edit_quantity_cubit.dart';
+import 'package:pharmazon_web/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/views/home_view.dart';
+import 'package:pharmazon_web/features/search/data/repos/search_repo_impl.dart';
+import 'package:pharmazon_web/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
+import 'package:pharmazon_web/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
+import 'package:pharmazon_web/features/search/presentation/views/search_view.dart';
 import 'package:pharmazon_web/features/welcome/views/welcome_view.dart';
 
 abstract class AppRouter {
   static const kWelcomeView = '/welcomeView';
   static const kAuthView = '/authView';
   static const kHomeView = '/HomeView';
+  static const kSearchView = '/searchView';
+  static const kMedicineDetail = '/medicineDetail';
 
   static GoRouter setupRouter(String? token) {
     // Create storage
@@ -27,9 +37,20 @@ abstract class AppRouter {
       if (token != null)
         GoRoute(
           path: '/',
-          builder: (context, state) =>  BlocProvider(
-            create: (context) => AddItemCubit(getIt<HomeRepoImpl>()),
-            child:const HomeView(),
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => AddItemCubit(getIt<HomeRepoImpl>()),
+              ),
+              BlocProvider(
+                  create: (context) =>
+                      ClassificationsCubit(getIt<HomeRepoImpl>())
+                        ..fetchClassifications()),
+              BlocProvider(
+                  create: (context) =>
+                      MedicineFromClassCubit(getIt<HomeRepoImpl>()))
+            ],
+            child: const HomeView(),
           ),
         ),
       GoRoute(
@@ -47,9 +68,46 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => AddItemCubit(getIt<HomeRepoImpl>()),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => AddItemCubit(getIt<HomeRepoImpl>()),
+            ),
+            BlocProvider(
+                create: (context) => ClassificationsCubit(getIt<HomeRepoImpl>())
+                  ..fetchClassifications()),
+            BlocProvider(
+                create: (context) =>
+                    MedicineFromClassCubit(getIt<HomeRepoImpl>()))
+          ],
           child: const HomeView(),
+        ),
+      ),
+      GoRoute(
+        path: kSearchView,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => ClassificationsSearchCubit(
+                getIt<SearchRepoImpl>(),
+              ),
+            ),
+            BlocProvider(
+              create: (context) => CommercialNameSearchCubit(
+                getIt<SearchRepoImpl>(),
+              ),
+            ),
+          ],
+          child: const SearchView(),
+        ),
+      ),
+      GoRoute(
+        path: kMedicineDetail,
+        builder: (context, state) => BlocProvider(
+          create: (context) => EditQuantityCubit( getIt<HomeRepoImpl>(),),
+          child: MedicineDetails(
+            medicineModel: state.extra as MedicineModel,
+          ),
         ),
       ),
     ]);

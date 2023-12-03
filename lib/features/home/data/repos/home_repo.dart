@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:pharmazon_web/core/errors/failures.dart';
+import 'package:pharmazon_web/core/shared_models/classifications_model.dart';
+import 'package:pharmazon_web/core/shared_models/medicine_model.dart';
 
 abstract class HomeRepo {
   Future<void> logOut();
@@ -13,4 +15,10 @@ required String expireDate,
 required int price,
 
   });
+    Future<Either<Failure, List<ClassificationsModel>>> fetchClassifications();
+  Future<Either<Failure, List<MedicineModel>>> fetchMedicineOfClassification(
+      {required String classification});
+  Future<Either<Failure,MedicineModel>> editQuantity(
+      {required String id,required dynamic quantity});
+  
 }

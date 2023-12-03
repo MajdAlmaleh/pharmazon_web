@@ -11,14 +11,19 @@ import 'package:pharmazon_web/generated/l10n.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
-final languageCubit = getIt<LanguageCubit>();
-final tokenCubit = getIt<TokenCubit>();
-  await Future.wait([languageCubit.loadLanguage(),tokenCubit.fetchSavedToken()]);
+  final languageCubit = getIt<LanguageCubit>();
+  final tokenCubit = getIt<TokenCubit>();
+  await Future.wait(
+      [languageCubit.loadLanguage(),
+       tokenCubit.fetchSavedToken()]);
+  print(tokenCubit.state);
 
-  final router =  AppRouter.setupRouter(tokenCubit.state);
+  final router = AppRouter.setupRouter(tokenCubit.state);
   runApp(MultiBlocProvider(
-    providers: [  BlocProvider(create:  (context) => getIt<LanguageCubit>()),BlocProvider(create:  (context) => getIt<TokenCubit>())],
-   
+    providers: [
+      BlocProvider(create: (context) => getIt<LanguageCubit>()),
+      BlocProvider(create: (context) => getIt<TokenCubit>())
+    ],
     child: Pharmazon(
       router: router,
     ),
