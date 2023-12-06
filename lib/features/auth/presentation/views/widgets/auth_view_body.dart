@@ -57,7 +57,8 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                   decoration: const BoxDecoration(color: Color(0xFF2AEBA4)),
                   child: Image.asset(AssetsData.authPic)),
               Padding(
-                padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width *.1 ),
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * .1),
                 child: Container(
                   height: MediaQuery.of(context).size.height * .7,
                   width: MediaQuery.of(context).size.width * .5,
@@ -73,7 +74,10 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                   child: ListView(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 10,),
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                          bottom: 40,
+                        ),
                         child: Text(
                           isSignIn ? 'Sign In' : 'Sign Up',
                           textAlign: TextAlign.center,
@@ -88,16 +92,18 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                         key: formKey,
                         child: Column(
                           children: [
-                            
-                              if (!isSignIn) const UsernameTextField(),
-                            const PhoneNumberTextField(),
+                            if (!isSignIn) const UsernameTextField(),
+                            const Padding(
+                              padding: EdgeInsets.only(right: 10, left: 10),
+                              child: PhoneNumberTextField(),
+                            ),
                             PasswordTextField(viewPasswordState: () {
                               setState(() {
-                                viewPassword = !viewPassword;
+                                hidePassword = !hidePassword;
                               });
                             }),
-                            const SignButton(),
-                             Padding(
+                             SignButton(text: isSignIn ? 'Sign In' : 'Sign Up'),
+                            Padding(
                               padding: const EdgeInsets.only(
                                 top: 50,
                               ),
@@ -118,7 +124,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                                         });
                                       },
                                       child: Text(
-                                        isSignIn ? 'Sign In' : 'Sign Up',
+                                        !isSignIn ? 'Sign In' : 'Sign Up',
                                         style: const TextStyle(
                                             color: Colors.green, fontSize: 20),
                                       ),
