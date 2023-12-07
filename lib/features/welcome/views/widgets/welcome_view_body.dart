@@ -44,7 +44,7 @@ class WelcomeViewBody extends StatelessWidget {
               AuthButton(
                   onPressed: () {
                     GoRouter.of(context)
-                        .push(AppRouter.kAuthView, extra: kSignUp);
+                        .pushReplacement(AppRouter.kAuthView, extra: kSignUp);
                   },
                   text: kSignUp),
             ],

@@ -21,8 +21,7 @@ class MedicineBubble extends StatelessWidget {
           GoRouter.of(context)
               .push(AppRouter.kMedicineDetail, extra: medicineModel);
         },
-      ),
-      
+      ),     
     );
   }
 }

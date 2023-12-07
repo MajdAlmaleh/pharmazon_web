@@ -12,6 +12,7 @@ import 'package:pharmazon_web/features/home/presentation/manager/classifications
 import 'package:pharmazon_web/features/home/presentation/manager/edit_quantity_cubit/edit_quantity_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/views/home_view.dart';
+import 'package:pharmazon_web/features/home/presentation/views/medicines_view.dart';
 import 'package:pharmazon_web/features/search/data/repos/search_repo_impl.dart';
 import 'package:pharmazon_web/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon_web/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
@@ -22,6 +23,8 @@ abstract class AppRouter {
   static const kWelcomeView = '/welcomeView';
   static const kAuthView = '/authView';
   static const kHomeView = '/HomeView';
+  static const kMedicinesView = '/medicinesView';
+
   static const kSearchView = '/searchView';
   static const kMedicineDetail = '/medicineDetail';
 
@@ -104,10 +107,19 @@ abstract class AppRouter {
       GoRoute(
         path: kMedicineDetail,
         builder: (context, state) => BlocProvider(
-          create: (context) => EditQuantityCubit( getIt<HomeRepoImpl>(),),
+          create: (context) => EditQuantityCubit(
+            getIt<HomeRepoImpl>(),
+          ),
           child: MedicineDetails(
             medicineModel: state.extra as MedicineModel,
           ),
+        ),
+      ),
+      GoRoute(
+        path: kMedicinesView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => MedicineFromClassCubit(getIt<HomeRepoImpl>()),
+          child: MedicinesView(classificationName: state.extra as String),
         ),
       ),
     ]);

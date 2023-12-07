@@ -8,15 +8,14 @@ import 'package:pharmazon_web/core/utils/app_router.dart';
 import 'package:pharmazon_web/core/utils/functions/custom_snack_bar.dart';
 import 'package:pharmazon_web/core/utils/service_locator.dart';
 import 'package:pharmazon_web/core/widgets/auth_button.dart';
-import 'package:pharmazon_web/core/widgets/classification_item.dart';
 import 'package:pharmazon_web/core/widgets/custom_error.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
-import 'package:pharmazon_web/core/widgets/medicine_bubble.dart';
 import 'package:pharmazon_web/features/home/data/repos/home_repo_impl.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/add_item_cubit/add_item_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/classifications_cubit/classifications_cubit.dart';
-import 'package:pharmazon_web/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
 import 'package:pharmazon_web/generated/l10n.dart';
+
+import '../../../../../core/widgets/classifications_grid_view.dart';
 
 final formKey = GlobalKey<FormState>();
 
@@ -46,20 +45,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-       // AddItem(),
-        AuthButton(
-              onPressed: () {
-                GoRouter.of(context).go(AppRouter.kWelcomeView);
-                HomeRepoImpl(getIt<ApiService>()).logOut();
-              },
-              text: 'logout'),
-          AuthButton(
-              onPressed: () {
-                GoRouter.of(context).push(AppRouter.kSearchView);
-              },
-              text: 'search'),
+    return SafeArea(
+      child: Column(
+        //addItem()
+        children: [
           BlocBuilder<ClassificationsCubit, ClassificationsState>(
             builder: (context, state) {
               if (state is ClassificationsLoading) {
@@ -68,13 +57,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               }
               if (state is ClassificationsSuccess) {
                 return Expanded(
-                  child: ListView.builder(
-                    itemCount: state.classifications.length,
-                    itemBuilder: (context, index) {
-                      return ClassificationItem(
-                          classificotionName:
-                              state.classifications[index].clssification!);
-                    },
+                  child: ClassificationsGridView(
+                    classifications: state.classifications,
                   ),
                 );
               }
@@ -82,52 +66,21 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 return CustomError(errMessage: state.errMessage);
               }
 
-              return Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    AuthButton(
-                        onPressed: () async {
-                          await HomeRepoImpl(getIt<ApiService>()).logOut();
-                          // ignore: use_build_context_synchronously
-                          GoRouter.of(context).go(AppRouter.kWelcomeView);
-                        },
-                        text: 'logout'),
-                    AuthButton(
-                        onPressed: () async {
-                          BlocProvider.of<LanguageCubit>(context)
-                              .changeLanguage();
-                        },
-                        text: S.of(context).language),
-                  ],
-                ),
-              );
+              return const Expanded(child: Text('There is no medicines')
+
+                  // AuthButton(
+                  //     onPressed: () async {
+                  //       BlocProvider.of<LanguageCubit>(context)
+                  //           .changeLanguage();
+                  //     },
+                  //     text: S.of(context).language),
+
+                  );
             },
           ),
-          BlocBuilder<MedicineFromClassCubit, MedicineFromClassState>(
-            builder: (context, state) {
-              if (state is MedicineFromClassLoading) {
-                return const CustomLoading();
-              }
-              if (state is MedicineFromClassFailure) {
-                return CustomError(
-                  errMessage: state.errMessage,
-                );
-              }
-              if (state is MedicineFromClassSuccess) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: state.medicineFromClass.length,
-                    itemBuilder: (context, index) {
-                      return MedicineBubble(medicineModel: state.medicineFromClass[index]);
-                    },
-                  ),
-                );
-              }
-              return Text('dallllllllllllllllllllta');
-            },
-          ),
-      ],
+     
+        ],
+      ),
     );
   }
 }

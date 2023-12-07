@@ -1,97 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:pharmazon_web/core/shared_models/medicine_model.dart';
-import 'package:pharmazon_web/core/utils/app_router.dart';
-import 'package:pharmazon_web/core/widgets/classification_item.dart';
-import 'package:pharmazon_web/core/widgets/custom_error.dart';
-import 'package:pharmazon_web/core/widgets/custom_loading.dart';
 import 'package:pharmazon_web/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon_web/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
+import 'package:pharmazon_web/features/search/presentation/views/widgets/custom_search_bar.dart';
+
+import 'classifications_search_items.dart';
+import 'commercial_name_search_items.dart';
+import 'search_option_item.dart';
 
 final controller = TextEditingController();
 
-class SearchViewBody extends StatelessWidget {
+class SearchViewBody extends StatefulWidget {
   const SearchViewBody({
     super.key,
   });
+
+  @override
+  State<SearchViewBody> createState() => _SearchViewBodyState();
+}
+
+bool isClassifications = true;
+
+class _SearchViewBodyState extends State<SearchViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    controller.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
         children: [
-          SearchBar(
+          CustomSearchBar(
             controller: controller,
-            leading: IconButton(
-                // onPressed: () {
-                //   if (controller.text.trim().isEmpty) {
-                //     return;
-                //   }
-                //   BlocProvider.of<CommercialNameSearchCubit>(context)
-                //       .searchByCommercialName(commercialName: controller.text);
-                // },
-                onPressed: () {
-                  if (controller.text.trim().isEmpty) {
-                    return;
-                  }
-                  BlocProvider.of<ClassificationsSearchCubit>(context)
-                      .searchByClassifications(classification: controller.text);
-                },
-                icon: const Icon(Icons.abc)),
-          ),
-          // BlocBuilder<CommercialNameSearchCubit, CommercialNameSearchState>(
-          //   builder: (context, state) {
-          //     if (state is CommercialNameSearchLoading) {
-          //       return const CustomLoading();
-          //     }
-          //     if (state is CommercialNameSearchFailure) {
-          //       return CustomError(errMessage: state.errMessage);
-          //     }
-          //     if (state is CommercialNameSearchSuccess) {
-          //       return Expanded(
-          //         child: ListView.builder(
-          //           itemCount: state.medicines.length,
-          //           itemBuilder: (context, index) {
-          //             return MedicineBubble(
-          //               medicineModel: state.medicines[index],
-
-          //               // return ClassificationItem(
-          //               //     classificotionName:
-          //               //         state.medicines[index].commercialName!);
-          //             );
-          //           },
-          //         ),
-          //       );
-          //     }
-
-          //     return const Text('data');
-          //   },
-          // )
-          BlocBuilder<ClassificationsSearchCubit, ClassificationsSearchState>(
-            builder: (context, state) {
-              if (state is ClassificationsSearchLoading) {
-                return const CustomLoading();
+            onSearch: (searchText) {
+              if (searchText.trim().isEmpty) {
+                return;
               }
-              if (state is ClassificationsSearchFailure) {
-                return  CustomError(errMessage: state.errMessage=='Your request not found, Please try later!'?'no data matches your search' : state.errMessage);
+              if (isClassifications) {
+                BlocProvider.of<ClassificationsSearchCubit>(context)
+                    .searchByClassifications(classification: searchText);
+                return;
               }
-              if (state is ClassificationsSearchSuccess) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: state.classifications.length,
-                    itemBuilder: (context, index) {
-                      return ClassificationItem(
-                          classificotionName:
-                              state.classifications[index].clssification!);
-                    },
-                  ),
-                );
-              }
-
-              return const Text('data');
+              BlocProvider.of<CommercialNameSearchCubit>(context)
+                  .searchByCommercialName(commercialName: searchText);
             },
-          )
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                onTap: () {
+                  if (!isClassifications) {
+                    setState(
+                      () {
+                        isClassifications = true;
+                      },
+                    );
+                  }
+                },
+                child: SearchOptionItem(
+                  text: 'Classifications',
+                  color: isClassifications ? Colors.grey : Colors.white,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  if (isClassifications) {
+                    setState(
+                      () {
+                        isClassifications = false;
+                      },
+                    );
+                  }
+                },
+                child: SearchOptionItem(
+                  text: 'Comercial name',
+                  color: !isClassifications ? Colors.grey : Colors.white,
+                ),
+              ),
+            ],
+          ),
+          if (!isClassifications) const CommercialNameSearchItems(),
+          if (isClassifications) const ClassificationsSearchItems(),
         ],
       ),
     );
