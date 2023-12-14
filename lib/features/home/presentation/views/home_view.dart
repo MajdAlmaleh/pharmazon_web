@@ -10,7 +10,9 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar:  AppBar(
+        title: const Text('classification'),
+      ),
         body: const HomeViewBody(),
         drawer: const HomeDrawrer());
   }

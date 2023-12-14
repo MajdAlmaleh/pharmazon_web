@@ -13,6 +13,15 @@ import 'package:pharmazon_web/features/home/presentation/manager/edit_quantity_c
 import 'package:pharmazon_web/features/home/presentation/manager/medicine_from_class_cubit/medicine_from_class_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/views/home_view.dart';
 import 'package:pharmazon_web/features/home/presentation/views/medicines_view.dart';
+import 'package:pharmazon_web/features/order/data/models/client_model.dart';
+import 'package:pharmazon_web/features/order/data/models/date_model.dart';
+import 'package:pharmazon_web/features/order/data/repos/order_repo_impl.dart';
+import 'package:pharmazon_web/features/order/presentation/manager/clients_cubit/clients_cubit.dart';
+import 'package:pharmazon_web/features/order/presentation/manager/dates_cubit/dates_cubit.dart';
+import 'package:pharmazon_web/features/order/presentation/manager/order_details_cubit/order_details_cubit.dart';
+import 'package:pharmazon_web/features/order/presentation/views/clinets_view.dart';
+import 'package:pharmazon_web/features/order/presentation/views/dates_view.dart';
+import 'package:pharmazon_web/features/order/presentation/views/order_details_view.dart';
 import 'package:pharmazon_web/features/search/data/repos/search_repo_impl.dart';
 import 'package:pharmazon_web/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon_web/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
@@ -27,6 +36,9 @@ abstract class AppRouter {
 
   static const kSearchView = '/searchView';
   static const kMedicineDetail = '/medicineDetail';
+  static const kClientsOrders = '/clientsOrders';
+  static const kDatesFromClient = '/datesFromClient';
+  static const kOrderDetailsFromDate = '/orderDetailsFromDate';
 
   static GoRouter setupRouter(String? token) {
     // Create storage
@@ -122,6 +134,42 @@ abstract class AppRouter {
           child: MedicinesView(classificationName: state.extra as String),
         ),
       ),
+      GoRoute(
+        path: kMedicinesView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => MedicineFromClassCubit(getIt<HomeRepoImpl>()),
+          child: MedicinesView(classificationName: state.extra as String),
+        ),
+      ),
+      GoRoute(
+        path: kClientsOrders,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              ClientsCubit(getIt<OrderRepoImpl>())..fetchClients(),
+          child: const ClientsView(),
+        ),
+      ),
+      GoRoute(
+        path: kDatesFromClient,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromClient(clientModel: state.extra as ClientModel),
+          child:  DatesView(
+            clientModel: state.extra as ClientModel,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: kOrderDetailsFromDate,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              OrderDetailsCubit(getIt<OrderRepoImpl>())..fetchOrderDetailsFromDate(dateModel: state.extra as DateModel),
+          child: OrderDetailsView(
+            dateModel: state.extra as DateModel,
+          ),
+        ),
+      ),
+
     ]);
   }
 

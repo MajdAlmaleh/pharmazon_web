@@ -47,8 +47,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(
-        //addItem()
         children: [
+          const AddItem(),
           BlocBuilder<ClassificationsCubit, ClassificationsState>(
             builder: (context, state) {
               if (state is ClassificationsLoading) {
@@ -74,11 +74,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   //           .changeLanguage();
                   //     },
                   //     text: S.of(context).language),
-
                   );
             },
           ),
-     
         ],
       ),
     );
@@ -116,11 +114,7 @@ class AddItem extends StatelessWidget {
                     HomeRepoImpl(getIt<ApiService>()).logOut();
                   },
                   text: 'logout'),
-              AuthButton(
-                  onPressed: () {
-                    GoRouter.of(context).push(AppRouter.kSearchView);
-                  },
-                  text: 'search'),
+ 
               AuthButton(
                   onPressed: () {
                     BlocProvider.of<LanguageCubit>(context).changeLanguage();

@@ -25,7 +25,7 @@ class HomeDrawrer extends StatelessWidget {
           ),
           ListTile(
             onTap: () {
-                GoRouter.of(context).pushReplacement(AppRouter.kSearchView);
+              GoRouter.of(context).pushReplacement(AppRouter.kSearchView);
             },
             leading: const Icon(
               Icons.search,
@@ -43,6 +43,18 @@ class HomeDrawrer extends StatelessWidget {
               'Setting',
               style: TextStyle(fontSize: 15),
             ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.shopping_cart,
+            ),
+            title: const Text(
+              'Orders',
+              style: TextStyle(fontSize: 15),
+            ),
+            onTap: () {
+              GoRouter.of(context).go(AppRouter.kClientsOrders); 
+            },
           ),
           ListTile(
             onTap: () {
