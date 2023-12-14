@@ -26,24 +26,26 @@ class DatesViewBody extends StatelessWidget {
             if (state is DatesSuccess) {
               if (state.dates.isEmpty) {
                 return const Center(
-                    child: Center(child: Text('there is no clients')));
+                    child: Center(child: Text('there is no orders')));
               }
 
-              return ListView.builder(
-                itemCount: state.dates.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      title: Text(state.dates[index].date!),
-                      onTap: (){
-                         context.go(AppRouter.kOrderDetailsFromDate,extra: state.dates[index]); 
-                      },
-                    ),
-                  );
-                },
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: state.dates.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                        title: Text(state.dates[index].date!),
+                        onTap: (){
+                           context.go(AppRouter.kOrderDetailsFromDate,extra: state.dates[index]); 
+                        },
+                      ),
+                    );
+                  },
+                ),
               );
             }
-            return const Center(child: Text('there is no clients'));
+            return const Center(child: Text('there is no orders'));
 
             // return Expanded(
             //   child: ListView.builder(

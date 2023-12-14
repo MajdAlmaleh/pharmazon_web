@@ -5,11 +5,11 @@ class ClientModel {
 
 
   Map<String, dynamic> toJson() => {
-        'clientId': clientId,
-        'clientName': clientName,
+        'id': clientId,
+        'name': clientName,
       };
   factory ClientModel.fromJson(Map<String, dynamic> json) =>ClientModel (
-       clientId: json['clientId'],
-       clientName:json['clientName'] ,
+       clientId: json['id'],
+       clientName:json['name'] ,
   );
 }

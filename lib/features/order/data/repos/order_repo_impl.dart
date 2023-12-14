@@ -26,7 +26,7 @@ class OrderRepoImpl implements OrderRepo {
       );
       List<ClientModel> clients = [];
       print(data);
-      for (var item in data['clients']) {
+      for (var item in data['users']) {
         clients.add(ClientModel.fromJson(item));
       }
 
@@ -43,15 +43,15 @@ class OrderRepoImpl implements OrderRepo {
   Future<Either<Failure, List<DateModel>>> getDatesFromClient({required ClientModel clientModel}) async {
       try {
       final data = await _apiService.post(
-        url: '$kBaseUrl/getDates',
+        url: '$kBaseUrl/getDate',
         token: tokenCubit.state,
           body: {
-            "client_id": clientModel.clientId
+            "id": clientModel.clientId
           }
       );
       List<DateModel> clients = [];
       print(data);
-      for (var item in data['dates']) {
+      for (var item in data['order_dates']) {
         clients.add(DateModel.fromJson(item));
       }
 
@@ -68,13 +68,13 @@ class OrderRepoImpl implements OrderRepo {
   Future<Either<Failure, OrderDetailsModel>> getOrderDetailsFromDate({required DateModel dateModel}) async{
         try {
       final data = await _apiService.post(
-        url: '$kBaseUrl/getDetails',
+        url: '$kBaseUrl/getOrder',
         token: tokenCubit.state,
           body: {
             "date": dateModel.date
           }
       );
-      OrderDetailsModel orderDetailsModel= OrderDetailsModel.fromJson(data['details']) ;
+      OrderDetailsModel orderDetailsModel= OrderDetailsModel.fromJson(data['order']) ;
       print(data);   
       return Right(orderDetailsModel);
     } on Exception catch (e) {

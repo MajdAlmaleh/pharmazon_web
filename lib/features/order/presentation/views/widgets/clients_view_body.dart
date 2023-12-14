@@ -34,19 +34,21 @@ class _ClientsViewBodyState extends State<ClientsViewBody> {
                     child: Center(child: Text('there is no clients')));
               }
 
-              return ListView.builder(
-                itemCount: state.clients.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      title: Text(state.clients[index].clientName!),
-                      onTap: () {
-                        context.go(AppRouter.kDatesFromClient,
-                            extra: state.clients[index]);
-                      },
-                    ),
-                  );
-                },
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: state.clients.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: ListTile(
+                        title: Text(state.clients[index].clientName!),
+                        onTap: () {
+                          context.go(AppRouter.kDatesFromClient,
+                              extra: state.clients[index]);
+                        },
+                      ),
+                    );
+                  },
+                ),
               );
             }
             return const Center(child: Text('there is no clients'));
