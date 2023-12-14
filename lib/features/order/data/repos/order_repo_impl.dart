@@ -7,7 +7,7 @@ import 'package:pharmazon_web/core/errors/failures.dart';
 import 'package:pharmazon_web/core/utils/api_service.dart';
 import 'package:pharmazon_web/features/order/data/models/client_model.dart';
 import 'package:pharmazon_web/features/order/data/models/date_model.dart';
-import 'package:pharmazon_web/features/order/data/models/order_details_model.dart';
+import 'package:pharmazon_web/features/order/data/models/order/order.details.dart';
 import 'package:pharmazon_web/features/order/data/repos/order_repo.dart';
 
 class OrderRepoImpl implements OrderRepo {
@@ -65,7 +65,7 @@ class OrderRepoImpl implements OrderRepo {
   }
   
   @override
-  Future<Either<Failure, OrderDetailsModel>> getOrderDetailsFromDate({required DateModel dateModel}) async{
+  Future<Either<Failure, OrderDetails>> getOrderDetailsFromDate({required DateModel dateModel}) async{
         try {
       final data = await _apiService.post(
         url: '$kBaseUrl/getOrder',
@@ -74,7 +74,7 @@ class OrderRepoImpl implements OrderRepo {
             "date": dateModel.date
           }
       );
-      OrderDetailsModel orderDetailsModel= OrderDetailsModel.fromJson(data['order']) ;
+      OrderDetails orderDetailsModel= OrderDetails.fromJson(data) ;
       print(data);   
       return Right(orderDetailsModel);
     } on Exception catch (e) {

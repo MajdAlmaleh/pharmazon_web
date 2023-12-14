@@ -42,7 +42,7 @@ class _ClientsViewBodyState extends State<ClientsViewBody> {
                       child: ListTile(
                         title: Text(state.clients[index].clientName!),
                         onTap: () {
-                          context.go(AppRouter.kDatesFromClient,
+                          context.push(AppRouter.kDatesFromClient,
                               extra: state.clients[index]);
                         },
                       ),

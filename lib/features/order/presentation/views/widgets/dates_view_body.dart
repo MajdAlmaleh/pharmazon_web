@@ -37,7 +37,7 @@ class DatesViewBody extends StatelessWidget {
                       child: ListTile(
                         title: Text(state.dates[index].date!),
                         onTap: (){
-                           context.go(AppRouter.kOrderDetailsFromDate,extra: state.dates[index]); 
+                           context.push(AppRouter.kOrderDetailsFromDate,extra: state.dates[index]); 
                         },
                       ),
                     );

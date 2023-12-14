@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:pharmazon_web/features/order/data/models/date_model.dart';
-import 'package:pharmazon_web/features/order/data/models/order_details_model.dart';
+import 'package:pharmazon_web/features/order/data/models/order/order.details.dart';
 import 'package:pharmazon_web/features/order/data/repos/order_repo.dart';
 
 part 'order_details_state.dart';
