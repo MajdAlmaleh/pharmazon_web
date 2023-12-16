@@ -53,7 +53,7 @@ class HomeDrawrer extends StatelessWidget {
               style: TextStyle(fontSize: 15),
             ),
             onTap: () {
-              GoRouter.of(context).go(AppRouter.kClientsOrders); 
+              GoRouter.of(context).pushReplacement(AppRouter.kClientsOrders); 
             },
           ),
           ListTile(

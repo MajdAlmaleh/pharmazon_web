@@ -9,6 +9,7 @@ import 'package:pharmazon_web/features/order/data/models/client_model.dart';
 import 'package:pharmazon_web/features/order/data/models/date_model.dart';
 import 'package:pharmazon_web/features/order/data/models/order/order.details.dart';
 import 'package:pharmazon_web/features/order/data/repos/order_repo.dart';
+import 'package:pharmazon_web/generated/intl/messages_ar.dart';
 
 class OrderRepoImpl implements OrderRepo {
   final ApiService _apiService;
@@ -77,6 +78,49 @@ class OrderRepoImpl implements OrderRepo {
       OrderDetails orderDetailsModel= OrderDetails.fromJson(data) ;
       print(data);   
       return Right(orderDetailsModel);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, Map<String,dynamic>>> changeState({required String toState,required String id}) async {
+          try {
+      final data = await _apiService.post(
+        url: '$kBaseUrl/status',
+        token: tokenCubit.state,
+          body: {
+            'id': id,
+            "status": toState
+          }
+      );
+  //    OrderDetails orderDetailsModel= OrderDetails.fromJson(data) ;
+      print(data);   
+      return Right(data);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioException(e));
+      }
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, Map<String,dynamic>>> changePayment({required String toState,required String id}) async {
+          try {
+      final data = await _apiService.post(
+        url: '$kBaseUrl/payment',
+        token: tokenCubit.state,
+          body: {
+            'id': id,
+            "payment": toState
+          }
+      );
+      print(data);   
+      return Right(data);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));

@@ -17,6 +17,8 @@ import 'package:pharmazon_web/features/order/data/models/client_model.dart';
 import 'package:pharmazon_web/features/order/data/models/date_model.dart';
 import 'package:pharmazon_web/features/order/data/repos/order_repo_impl.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/clients_cubit/clients_cubit.dart';
+import 'package:pharmazon_web/features/order/presentation/manager/payment_cubit/payment_cubit.dart';
+import 'package:pharmazon_web/features/order/presentation/manager/proccess_cubit/proccess_state_cubit.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/dates_cubit/dates_cubit.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/order_details_cubit/order_details_cubit.dart';
 import 'package:pharmazon_web/features/order/presentation/views/clinets_view.dart';
@@ -161,15 +163,25 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: kOrderDetailsFromDate,
-        builder: (context, state) => BlocProvider(
+        builder: (context, state) =>
+        MultiBlocProvider(providers: [
+
+         BlocProvider(
           create: (context) =>
               OrderDetailsCubit(getIt<OrderRepoImpl>())..fetchOrderDetailsFromDate(dateModel: state.extra as DateModel),
+        ),
+        BlocProvider(create: (context)=>   ProccessStateCubit(getIt<OrderRepoImpl>()),
+        ),
+        
+        BlocProvider(create: (context)=>   PaymentCubit(getIt<OrderRepoImpl>()),
+        ),
+        
+        ],
           child: OrderDetailsView(
             dateModel: state.extra as DateModel,
           ),
-        ),
+        ),     
       ),
-
     ]);
   }
 
