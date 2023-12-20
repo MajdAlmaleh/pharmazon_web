@@ -14,8 +14,7 @@ void main() async {
   final languageCubit = getIt<LanguageCubit>();
   final tokenCubit = getIt<TokenCubit>();
   await Future.wait(
-      [languageCubit.loadLanguage(),
-       tokenCubit.fetchSavedToken()]);
+      [languageCubit.loadLanguage(), tokenCubit.fetchSavedToken()]);
   print(tokenCubit.state);
 
   final router = AppRouter.setupRouter(tokenCubit.state);
@@ -38,10 +37,10 @@ class Pharmazon extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LanguageCubit, String>(
       builder: (context, state) {
-        
         return MaterialApp.router(
-                    theme:ThemeData().copyWith(colorScheme: ColorScheme.fromSeed(seedColor:const Color(0xFF17C381))),
-
+          theme: ThemeData().copyWith(
+              colorScheme:
+                  ColorScheme.fromSeed(seedColor: const Color(0xFF17C381))),
           locale: Locale(state),
           localizationsDelegates: const [
             S.delegate,

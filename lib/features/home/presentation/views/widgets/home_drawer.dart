@@ -13,63 +13,83 @@ class HomeDrawrer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
-        children: [
-          Container(
-            color: const Color(0xFF17C381),
-            width: double.infinity,
-            height: 300,
-            child: Container(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
               color: const Color(0xFF17C381),
+              width: double.infinity,
+              height: 300,
+              child: Container(
+                color: const Color(0xFF17C381),
+              ),
             ),
-          ),
-          ListTile(
-            onTap: () {
-              GoRouter.of(context).pushReplacement(AppRouter.kSearchView);
-            },
-            leading: const Icon(
-              Icons.search,
+      
+        ListTile(
+              leading: const Icon(
+                Icons.home,
+              ),
+              title: const Text(
+                'home',
+                style: TextStyle(fontSize: 15),
+              ),
+              onTap: () {
+                
+               context.go(AppRouter.kHomeView); 
+              },
             ),
-            title: const Text(
-              'search',
-              style: TextStyle(fontSize: 15),
+      
+      
+      
+      
+            ListTile(
+              onTap: () {
+                GoRouter.of(context).pushReplacement(AppRouter.kSearchView);
+              },
+              leading: const Icon(
+                Icons.search,
+              ),
+              title: const Text(
+                'search',
+                style: TextStyle(fontSize: 15),
+              ),
             ),
-          ),
-          const ListTile(
-            leading: Icon(
-              Icons.settings,
+            const ListTile(
+              leading: Icon(
+                Icons.settings,
+              ),
+              title: Text(
+                'Setting',
+                style: TextStyle(fontSize: 15),
+              ),
             ),
-            title: Text(
-              'Setting',
-              style: TextStyle(fontSize: 15),
+            ListTile(
+              leading: const Icon(
+                Icons.shopping_cart,
+              ),
+              title: const Text(
+                'Orders',
+                style: TextStyle(fontSize: 15),
+              ),
+              onTap: () {
+                GoRouter.of(context).pushReplacement(AppRouter.kClientsOrders); 
+              },
             ),
-          ),
-          ListTile(
-            leading: const Icon(
-              Icons.shopping_cart,
+            ListTile(
+              onTap: () {
+                GoRouter.of(context).go(AppRouter.kWelcomeView);
+                HomeRepoImpl(getIt<ApiService>()).logOut();
+              },
+              leading: const Icon(
+                Icons.logout,
+              ),
+              title: const Text(
+                'Logout',
+                style: TextStyle(fontSize: 15),
+              ),
             ),
-            title: const Text(
-              'Orders',
-              style: TextStyle(fontSize: 15),
-            ),
-            onTap: () {
-              GoRouter.of(context).pushReplacement(AppRouter.kClientsOrders); 
-            },
-          ),
-          ListTile(
-            onTap: () {
-              GoRouter.of(context).go(AppRouter.kWelcomeView);
-              HomeRepoImpl(getIt<ApiService>()).logOut();
-            },
-            leading: const Icon(
-              Icons.logout,
-            ),
-            title: const Text(
-              'Logout',
-              style: TextStyle(fontSize: 15),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageCubit extends Cubit<String> {
   LanguageCubit() : super(kEnglish) {
-    loadLanguage();
+    loadLanguage(); 
   }
 
   Future<void> loadLanguage() async {

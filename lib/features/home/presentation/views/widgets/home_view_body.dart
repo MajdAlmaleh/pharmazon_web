@@ -108,12 +108,7 @@ class AddItem extends StatelessWidget {
           key: formKey,
           child: Column(
             children: [
-              AuthButton(
-                  onPressed: () {
-                    GoRouter.of(context).go(AppRouter.kWelcomeView);
-                    HomeRepoImpl(getIt<ApiService>()).logOut();
-                  },
-                  text: 'logout'),
+            
  
               AuthButton(
                   onPressed: () {
