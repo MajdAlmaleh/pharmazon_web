@@ -18,59 +18,61 @@ class ClientsViewBody extends StatefulWidget {
 class _ClientsViewBodyState extends State<ClientsViewBody> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BlocBuilder<ClientsCubit, ClientsState>(
-          builder: (context, state) {
-            if (state is ClientsLoading) {
-              return const CustomLoading();
-            }
-            if (state is ClientsFailure) {
-              return CustomError(errMessage: state.errMessage);
-            }
-            if (state is ClientsSuccess) {
-              if (state.clients.isEmpty) {
-                return const Center(
-                    child: Center(child: Text('there is no clients')));
+    return Expanded(
+      child: Column(
+        children: [
+          BlocBuilder<ClientsCubit, ClientsState>(
+            builder: (context, state) {
+              if (state is ClientsLoading) {
+                return const CustomLoading();
               }
-
-              return Expanded(
-                child: ListView.builder(
-                  itemCount: state.clients.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        title: Text(state.clients[index].clientName!),
-                        onTap: () {
-                          context.push(AppRouter.kDatesFromClient,
-                              extra: state.clients[index]);
-                        },
-                      ),
-                    );
-                  },
-                ),
-              );
-            }
-            return const Center(child: Text('there is no clients'));
-
-            // return Expanded(
-            //   child: ListView.builder(
-            //     itemCount: 5,
-            //     itemBuilder: (context, index) {
-            //       return Card(
-            //         child: ListTile(
-            //           title: const Text('state.clients[index].clientName!'),
-            //           onTap: () {
-            //             context.go(AppRouter.kDatesFromClient, extra: ' h');
-            //           },
-            //         ),
-            //       );
-            //     },
-            //   ),
-            // );
-          },
-        ),
-      ],
+              if (state is ClientsFailure) {
+                return CustomError(errMessage: state.errMessage);
+              }
+              if (state is ClientsSuccess) {
+                if (state.clients.isEmpty) {
+                  return const Center(
+                      child: Center(child: Text('there is no clients')));
+                }
+    
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: state.clients.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: ListTile(
+                          title: Text(state.clients[index].clientName!),
+                          onTap: () {
+                            context.push(AppRouter.kDatesFromClient,
+                                extra: state.clients[index]);
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }
+              return const Center(child: Text('there is no clients'));
+    
+              // return Expanded(
+              //   child: ListView.builder(
+              //     itemCount: 5,
+              //     itemBuilder: (context, index) {
+              //       return Card(
+              //         child: ListTile(
+              //           title: const Text('state.clients[index].clientName!'),
+              //           onTap: () {
+              //             context.go(AppRouter.kDatesFromClient, extra: ' h');
+              //           },
+              //         ),
+              //       );
+              //     },
+              //   ),
+              // );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

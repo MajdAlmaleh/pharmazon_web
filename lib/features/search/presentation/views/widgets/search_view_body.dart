@@ -30,7 +30,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Expanded(
       child: Column(
         children: [
           CustomSearchBar(

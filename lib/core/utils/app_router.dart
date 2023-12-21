@@ -65,7 +65,21 @@ abstract class AppRouter {
                         ..fetchClassifications()),
               BlocProvider(
                   create: (context) =>
-                      MedicineFromClassCubit(getIt<HomeRepoImpl>()))
+                      MedicineFromClassCubit(getIt<HomeRepoImpl>())),
+
+                        BlocProvider(
+              create: (context) => ClassificationsSearchCubit(
+                getIt<SearchRepoImpl>(),
+              ),
+            ),
+            BlocProvider(
+              create: (context) => CommercialNameSearchCubit(
+                getIt<SearchRepoImpl>(),
+              ),
+            ),
+              BlocProvider(
+          create: (context) =>
+              ClientsCubit(getIt<OrderRepoImpl>())..fetchClients(),),
             ],
             child: const HomeView(),
           ),
@@ -95,7 +109,22 @@ abstract class AppRouter {
                   ..fetchClassifications()),
             BlocProvider(
                 create: (context) =>
-                    MedicineFromClassCubit(getIt<HomeRepoImpl>()))
+                    MedicineFromClassCubit(getIt<HomeRepoImpl>())),
+
+
+                      BlocProvider(
+              create: (context) => ClassificationsSearchCubit(
+                getIt<SearchRepoImpl>(),
+              ),
+            ),
+            BlocProvider(
+              create: (context) => CommercialNameSearchCubit(
+                getIt<SearchRepoImpl>(),
+              ),
+            ),
+            BlocProvider(
+          create: (context) =>
+              ClientsCubit(getIt<OrderRepoImpl>())..fetchClients(),),
           ],
           child: const HomeView(),
         ),

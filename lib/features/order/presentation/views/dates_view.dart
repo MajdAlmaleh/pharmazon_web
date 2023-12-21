@@ -14,10 +14,7 @@ class DatesView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Dates for ${clientModel.clientName} '),
-        ),
-        drawer: const HomeDrawrer(
-            //  pageName: 'cart',
-            ),
+        ),      
         body: const DatesViewBody());
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon_web/core/widgets/custom_error.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
+import 'package:pharmazon_web/features/home/presentation/views/widgets/medicines_list_view.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/order_details_cubit/order_details_cubit.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/payment_cubit/payment_cubit.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/proccess_cubit/proccess_state_cubit.dart';
@@ -44,6 +45,9 @@ class OrderDetailsViewBody extends StatelessWidget {
                             id: state.orderDetails.order!.orderId.toString());
                   },
                   child: const Text("change paid")),
+
+MedicinesListView(medicines: state.orderDetails.pharmaceuticals),
+
               Text(
                 state.orderDetails.pharmaceuticals![0].price.toString(),
               ),
