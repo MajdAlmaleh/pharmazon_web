@@ -51,67 +51,127 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
           return Card(
               child: Column(
             children: [
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                        onPressed: null, child: Text("in process")),
-                  ),
-                  StatefulButton(
-                    disableOnStates: const ['in preparation', 'send'],
-                    label: "in preparation",
-                    finalState: finalState!,
-                    toState: 'in preparation',
-                    onPressed: () {
-                      BlocProvider.of<ProccessStateCubit>(context)
-                          .changeOrderState(
-                              toState: 'in preparation',
-                              id: state.orderDetails.order!.orderId.toString());
-                    },
-                  ),
-                  StatefulButton(
-                      disableOnStates: const ['send'],
-                      label: "Sent",
+              if (finalState == 'send')
+                const Text(
+                  'Order delivered successfully',
+                  style: TextStyle(fontSize: 24, color: Colors.green),
+                ),
+              if (finalState == 'cancel')
+                const Text(
+                  'Order cancelled',
+                  style: TextStyle(fontSize: 24, color: Colors.red),
+                ),
+              if (finalState != 'send' && finalState != 'cancel')
+                Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          onPressed: null, child: Text("in process")),
+                    ),
+                    StatefulButton(
+                      disableOnStates: const [
+                        'in preparation',
+                        'send',
+                        'cancel'
+                      ],
+                      label: "in preparation",
                       finalState: finalState!,
-                      toState: 'send',
+                      toState: 'in preparation',
                       onPressed: () {
-                        setState(() {
-                          finalState = 'send';
-                        });
                         BlocProvider.of<ProccessStateCubit>(context)
                             .changeOrderState(
-                                toState: 'send',
+                                toState: 'in preparation',
                                 id: state.orderDetails.order!.orderId
                                     .toString());
-                      }),
-                      Spacer(),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.red),
-                        ),
-                        onPressed: null, child: Text("cancel")),
-                ],
-              ),
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child:
-                        ElevatedButton(onPressed: null, child: Text("un paid")),
-                  ),
-                  StatefulButton(
-                      label: 'paid',
-                      finalState: finalPayment!,
-                      toState: 'paid',
-                      onPressed: () {
-                        BlocProvider.of<PaymentCubit>(context).changePayment(
-                            toState: 'paid',
-                            id: state.orderDetails.order!.orderId.toString());
                       },
-                      disableOnStates: const ['paid']),
-                ],
-              ),
+                    ),
+                    StatefulButton(
+                        disableOnStates: const ['send', 'cancel'],
+                        label: "Sent",
+                        finalState: finalState!,
+                        toState: 'send',
+                        onPressed: () {
+                          setState(() {
+                            finalState = 'send';
+                          });
+                          BlocProvider.of<ProccessStateCubit>(context)
+                              .changeOrderState(
+                                  toState: 'send',
+                                  id: state.orderDetails.order!.orderId
+                                      .toString());
+                        }),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: finalState == 'in process'
+                                ? MaterialStateProperty.all(Colors.red)
+                                : null,
+                          ),
+                          onPressed: finalState == 'in process'
+                              ? () {
+                                  BlocProvider.of<ProccessStateCubit>(context)
+                                      .changeOrderState(
+                                          toState: 'cancel',
+                                          id: state.orderDetails.order!.orderId
+                                              .toString());
+                                  setState(() {
+                                    finalState = 'cancel';
+                                  });
+                                }
+                              : null,
+                          child: const Text("cancel")),
+                    ),
+                  ],
+                ),
+              if (finalState != 'cancel')
+                finalPayment == 'paid' || finalState == 'cancel'
+                    ? const Text(
+                        'Order payment done successfully',
+                        style: TextStyle(fontSize: 20, color: Colors.green),
+                      )
+                    : Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: ElevatedButton(
+                                onPressed: null, child: Text("un paid")),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ElevatedButton(
+                                onPressed: finalState != 'cancel' &&
+                                        finalPayment == 'unpaid'
+                                    ? () {
+                                        setState(() {
+                                          finalPayment = 'paid';
+                                        });
+                                        BlocProvider.of<PaymentCubit>(context)
+                                            .changePayment(
+                                                toState: 'paid',
+                                                id: state
+                                                    .orderDetails.order!.orderId
+                                                    .toString());
+                                      }
+                                    : null,
+                                child: const Text("paid")),
+                          ),
+
+                          // StatefulButton(
+                          //     label: 'paid',
+                          //     finalState: finalPayment!,
+                          //     toState: 'paid',
+                          //     onPressed:finalState== 'cancle'? null: () {
+                          //       BlocProvider.of<PaymentCubit>(context).changePayment(
+                          //           toState: 'paid',
+                          //           id: state.orderDetails.order!.orderId.toString());
+                          //     },
+                          //     disableOnStates: const ['paid','cancel']),
+                        ],
+                      ),
               Expanded(
                   child: MedicinesListView(
                 medicines: state.orderDetails.pharmaceuticals!,
@@ -128,4 +188,3 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
     );
   }
 }
-

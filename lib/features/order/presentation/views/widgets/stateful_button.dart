@@ -5,7 +5,7 @@ class StatefulButton extends StatefulWidget {
   final String label;
   String finalState;
   final String toState;
-  final Function onPressed;
+  final Function? onPressed;
   final List<String> disableOnStates;
 
   StatefulButton({
@@ -26,13 +26,13 @@ class _StatefulButtonState extends State<StatefulButton> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
-        onPressed: widget.disableOnStates.contains(widget.finalState)
+        onPressed: widget.disableOnStates.contains(widget.finalState)&&widget.onPressed !=null
             ? null
             : () {
                 setState(() {
                   widget.finalState = widget.toState;
                 });
-                widget.onPressed();
+                widget.onPressed! () ;
               },
         child: Text(widget.label),
       ),
