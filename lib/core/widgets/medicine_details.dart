@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmazon_web/core/shared_models/medicine_model.dart';
+import 'package:pharmazon_web/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/edit_quantity_cubit/edit_quantity_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/views/widgets/AddTextField.dart';
 
@@ -8,7 +8,7 @@ final controller = TextEditingController();
 
 class MedicineDetails extends StatelessWidget {
   const MedicineDetails({super.key, required this.medicineModel});
-  final MedicineModel medicineModel;
+  final Pharmaceutical medicineModel;
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;

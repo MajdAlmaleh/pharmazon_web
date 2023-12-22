@@ -17,6 +17,6 @@ final class EditQuantityFailure extends EditQuantityState {
 }
 
 final class EditQuantitySuccess extends EditQuantityState {
-  final MedicineModel editedMedicine;
+  final Pharmaceutical editedMedicine;
   const EditQuantitySuccess(this.editedMedicine);
 }

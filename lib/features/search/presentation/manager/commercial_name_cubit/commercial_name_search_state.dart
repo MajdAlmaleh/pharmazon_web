@@ -8,6 +8,7 @@ sealed class CommercialNameSearchState extends Equatable {
 }
 
 final class CommercialNameSearchInitial extends CommercialNameSearchState {}
+
 final class CommercialNameSearchLoading extends CommercialNameSearchState {}
 
 final class CommercialNameSearchFailure extends CommercialNameSearchState {
@@ -16,7 +17,7 @@ final class CommercialNameSearchFailure extends CommercialNameSearchState {
 }
 
 final class CommercialNameSearchSuccess extends CommercialNameSearchState {
-  final List<MedicineModel> medicines;
+  final List<Pharmaceutical> medicines;
 
   const CommercialNameSearchSuccess(this.medicines);
 }

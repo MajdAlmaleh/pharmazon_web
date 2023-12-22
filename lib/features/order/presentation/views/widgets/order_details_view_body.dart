@@ -7,10 +7,22 @@ import 'package:pharmazon_web/features/order/presentation/manager/order_details_
 import 'package:pharmazon_web/features/order/presentation/manager/payment_cubit/payment_cubit.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/proccess_cubit/proccess_state_cubit.dart';
 
-class OrderDetailsViewBody extends StatelessWidget {
+import 'stateful_button.dart';
+
+class OrderDetailsViewBody extends StatefulWidget {
   const OrderDetailsViewBody({
     super.key,
   });
+
+  @override
+  State<OrderDetailsViewBody> createState() => _OrderDetailsViewBodyState();
+}
+
+class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
+  var firstChange = false;
+
+  String? finalState;
+  String? finalPayment;
 
   @override
   Widget build(BuildContext context) {
@@ -26,53 +38,94 @@ class OrderDetailsViewBody extends StatelessWidget {
           if (state.orderDetails.pharmaceuticals!.isEmpty) {
             return const Text('empty');
           }
+          var orderState = state.orderDetails.order!.status;
+
+          var orderPayment = state.orderDetails.order!.payment;
+
+          if (!firstChange) {
+            finalState = orderState;
+            finalPayment = orderPayment;
+            firstChange = true;
+          }
+
           return Card(
               child: Column(
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<ProccessStateCubit>(context)
-                        .changeOrderState(
-                            toState: 'in preparation',
-                            id: state.orderDetails.order!.orderId.toString());
-                  },
-                  child: const Text("change state")),
-              ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<PaymentCubit>(context)
-                        .changePayment(
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        onPressed: null, child: Text("in process")),
+                  ),
+                  StatefulButton(
+                    disableOnStates: const ['in preparation', 'send'],
+                    label: "in preparation",
+                    finalState: finalState!,
+                    toState: 'in preparation',
+                    onPressed: () {
+                      BlocProvider.of<ProccessStateCubit>(context)
+                          .changeOrderState(
+                              toState: 'in preparation',
+                              id: state.orderDetails.order!.orderId.toString());
+                    },
+                  ),
+                  StatefulButton(
+                      disableOnStates: const ['send'],
+                      label: "Sent",
+                      finalState: finalState!,
+                      toState: 'send',
+                      onPressed: () {
+                        setState(() {
+                          finalState = 'send';
+                        });
+                        BlocProvider.of<ProccessStateCubit>(context)
+                            .changeOrderState(
+                                toState: 'send',
+                                id: state.orderDetails.order!.orderId
+                                    .toString());
+                      }),
+                      Spacer(),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.red),
+                        ),
+                        onPressed: null, child: Text("cancel")),
+                ],
+              ),
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child:
+                        ElevatedButton(onPressed: null, child: Text("un paid")),
+                  ),
+                  StatefulButton(
+                      label: 'paid',
+                      finalState: finalPayment!,
+                      toState: 'paid',
+                      onPressed: () {
+                        BlocProvider.of<PaymentCubit>(context).changePayment(
                             toState: 'paid',
                             id: state.orderDetails.order!.orderId.toString());
-                  },
-                  child: const Text("change paid")),
-
-MedicinesListView(medicines: state.orderDetails.pharmaceuticals),
-
-              Text(
-                state.orderDetails.pharmaceuticals![0].price.toString(),
+                      },
+                      disableOnStates: const ['paid']),
+                ],
+              ),
+              Expanded(
+                  child: MedicinesListView(
+                medicines: state.orderDetails.pharmaceuticals!,
+                isOrder: true,
+              )),
+              const Text(
+                '',
               ),
             ],
           ));
         }
         return const Center(child: Text('there is no clients'));
-
-        // return Expanded(
-        //   child: ListView.builder(
-        //     itemCount: 5,
-        //     itemBuilder: (context, index) {
-        //       return Card(
-        //         child: ListTile(
-        //           title: const Text('state.clients[index].clientName!'),
-        //           onTap: () {
-        //             //todo navigate to detalis
-        //           //  context.go('location');
-        //           },
-        //         ),
-        //       );
-        //     },
-        //   ),
-        // );
       },
     );
   }
 }
+

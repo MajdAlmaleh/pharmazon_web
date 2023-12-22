@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:pharmazon_web/core/shared_models/medicine_model.dart';
+import 'package:pharmazon_web/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon_web/core/widgets/medicine_bubble.dart';
 
 class MedicinesListView extends StatelessWidget {
-  final List<MedicineModel> medicines;
+  final List<Pharmaceutical> medicines;
+  final bool isOrder;
   const MedicinesListView({
-    super.key, required this.medicines,
+    super.key,
+    required this.medicines,
+    this.isOrder=false,
   });
 
   @override
@@ -13,9 +16,8 @@ class MedicinesListView extends StatelessWidget {
     return ListView.builder(
       itemCount: medicines.length,
       itemBuilder: (context, index) {
-        return MedicineBubble(medicineModel: medicines[index]);
+        return MedicineBubble(medicineModel: medicines[index],isOrder: isOrder,);
       },
-      
     );
   }
 }

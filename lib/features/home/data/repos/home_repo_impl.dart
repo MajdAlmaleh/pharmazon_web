@@ -5,7 +5,7 @@ import 'package:pharmazon_web/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon_web/constants.dart';
 import 'package:pharmazon_web/core/errors/failures.dart';
 import 'package:pharmazon_web/core/shared_models/classifications_model.dart';
-import 'package:pharmazon_web/core/shared_models/medicine_model.dart';
+import 'package:pharmazon_web/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon_web/core/utils/api_service.dart';
 import 'package:pharmazon_web/features/home/data/repos/home_repo.dart';
 
@@ -89,16 +89,16 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<MedicineModel>>> fetchMedicineOfClassification(
+  Future<Either<Failure, List<Pharmaceutical>>> fetchMedicineOfClassification(
       {required String classification}) async {
     try {
       final data = await _apiService.get(
         url: '$kBaseUrl/getAllMedicine?calssification=$classification',
         token: tokenCubit.state,
       );
-      List<MedicineModel> medicines = [];
+      List<Pharmaceutical> medicines = [];
       for (var item in data['medicines']) {
-        medicines.add(MedicineModel.fromJson(item));
+        medicines.add(Pharmaceutical.fromJson(item));
       }
 
       return Right(medicines);
@@ -111,7 +111,7 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, MedicineModel>> editQuantity(
+  Future<Either<Failure, Pharmaceutical>> editQuantity(
       {required String id, required dynamic quantity}) async {
     try {
       final response = await _apiService.post(
@@ -122,8 +122,7 @@ class HomeRepoImpl implements HomeRepo {
           },
           token: tokenCubit.state);
 
-      MedicineModel medicines = MedicineModel.fromJson(response['medicine']);
-     
+      Pharmaceutical medicines = Pharmaceutical.fromJson(response['medicine']);
 
       return right(medicines);
     } on Exception catch (e) {

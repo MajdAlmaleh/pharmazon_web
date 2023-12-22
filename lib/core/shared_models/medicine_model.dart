@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class MedicineModel extends Equatable {
+class Pharmaceutical extends Equatable {
   final int? id;
   final String? scientificName;
   final String? commercialName;
@@ -12,7 +12,7 @@ class MedicineModel extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  const MedicineModel({
+  const Pharmaceutical({
     this.id,
     this.scientificName,
     this.commercialName,
@@ -25,7 +25,7 @@ class MedicineModel extends Equatable {
     this.updatedAt,
   });
 
-  factory MedicineModel.fromJson(Map<String, dynamic> json) => MedicineModel(
+  factory Pharmaceutical.fromJson(Map<String, dynamic> json) => Pharmaceutical(
         id: json['id'] as int?,
         scientificName: json['scientific_name'] as String?,
         commercialName: json['commercial_name'] as String?,

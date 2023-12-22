@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pharmazon_web/core/shared_models/medicine_model.dart';
+import 'package:pharmazon_web/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon_web/core/utils/service_locator.dart';
 import 'package:pharmazon_web/core/widgets/medicine_details.dart';
 import 'package:pharmazon_web/features/auth/data/repos/auth_repo_impl.dart';
@@ -66,20 +66,20 @@ abstract class AppRouter {
               BlocProvider(
                   create: (context) =>
                       MedicineFromClassCubit(getIt<HomeRepoImpl>())),
-
-                        BlocProvider(
-              create: (context) => ClassificationsSearchCubit(
-                getIt<SearchRepoImpl>(),
-              ),
-            ),
-            BlocProvider(
-              create: (context) => CommercialNameSearchCubit(
-                getIt<SearchRepoImpl>(),
-              ),
-            ),
               BlocProvider(
-          create: (context) =>
-              ClientsCubit(getIt<OrderRepoImpl>())..fetchClients(),),
+                create: (context) => ClassificationsSearchCubit(
+                  getIt<SearchRepoImpl>(),
+                ),
+              ),
+              BlocProvider(
+                create: (context) => CommercialNameSearchCubit(
+                  getIt<SearchRepoImpl>(),
+                ),
+              ),
+              BlocProvider(
+                create: (context) =>
+                    ClientsCubit(getIt<OrderRepoImpl>())..fetchClients(),
+              ),
             ],
             child: const HomeView(),
           ),
@@ -110,9 +110,7 @@ abstract class AppRouter {
             BlocProvider(
                 create: (context) =>
                     MedicineFromClassCubit(getIt<HomeRepoImpl>())),
-
-
-                      BlocProvider(
+            BlocProvider(
               create: (context) => ClassificationsSearchCubit(
                 getIt<SearchRepoImpl>(),
               ),
@@ -123,8 +121,9 @@ abstract class AppRouter {
               ),
             ),
             BlocProvider(
-          create: (context) =>
-              ClientsCubit(getIt<OrderRepoImpl>())..fetchClients(),),
+              create: (context) =>
+                  ClientsCubit(getIt<OrderRepoImpl>())..fetchClients(),
+            ),
           ],
           child: const HomeView(),
         ),
@@ -154,7 +153,7 @@ abstract class AppRouter {
             getIt<HomeRepoImpl>(),
           ),
           child: MedicineDetails(
-            medicineModel: state.extra as MedicineModel,
+            medicineModel: state.extra as Pharmaceutical,
           ),
         ),
       ),
@@ -183,33 +182,33 @@ abstract class AppRouter {
       GoRoute(
         path: kDatesFromClient,
         builder: (context, state) => BlocProvider(
-          create: (context) =>
-              DatesCubit(getIt<OrderRepoImpl>())..fetchDateFromClient(clientModel: state.extra as ClientModel),
-          child:  DatesView(
+          create: (context) => DatesCubit(getIt<OrderRepoImpl>())
+            ..fetchDateFromClient(clientModel: state.extra as ClientModel),
+          child: DatesView(
             clientModel: state.extra as ClientModel,
           ),
         ),
       ),
       GoRoute(
         path: kOrderDetailsFromDate,
-        builder: (context, state) =>
-        MultiBlocProvider(providers: [
-
-         BlocProvider(
-          create: (context) =>
-              OrderDetailsCubit(getIt<OrderRepoImpl>())..fetchOrderDetailsFromDate(dateModel: state.extra as DateModel),
-        ),
-        BlocProvider(create: (context)=>   ProccessStateCubit(getIt<OrderRepoImpl>()),
-        ),
-        
-        BlocProvider(create: (context)=>   PaymentCubit(getIt<OrderRepoImpl>()),
-        ),
-        
-        ],
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => OrderDetailsCubit(getIt<OrderRepoImpl>())
+                ..fetchOrderDetailsFromDate(
+                    dateModel: state.extra as DateModel),
+            ),
+            BlocProvider(
+              create: (context) => ProccessStateCubit(getIt<OrderRepoImpl>()),
+            ),
+            BlocProvider(
+              create: (context) => PaymentCubit(getIt<OrderRepoImpl>()),
+            ),
+          ],
           child: OrderDetailsView(
             dateModel: state.extra as DateModel,
           ),
-        ),     
+        ),
       ),
     ]);
   }
