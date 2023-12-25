@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:pharmazon_web/core/utils/app_router.dart';
 import 'package:pharmazon_web/core/widgets/custom_error.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
-import 'package:pharmazon_web/features/order/data/models/date_model.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/dates_cubit/dates_cubit.dart';
 
 import 'date_list_view_item.dart';
@@ -36,7 +33,7 @@ class DatesViewBody extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: state.dates.length,
                   itemBuilder: (context, index) {
-                    return DateListViewItem(date: state.dates[index],);
+                    return DateListViewItem(date: state.dates[state.dates.length-index-1],);
                   },
                 ),
               );

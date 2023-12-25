@@ -92,9 +92,9 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, List<Pharmaceutical>>> fetchMedicineOfClassification(
       {required String classification}) async {
     try {
-      final data = await _apiService.get(
+      final data = await _apiService.post(
         url: '$kBaseUrl/getAllMedicine?calssification=$classification',
-        token: tokenCubit.state,
+        token: tokenCubit.state, body: null,
       );
       List<Pharmaceutical> medicines = [];
       for (var item in data['medicines']) {

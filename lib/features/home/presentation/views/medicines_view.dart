@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pharmazon_web/features/home/presentation/views/widgets/home_drawer.dart';
 import 'package:pharmazon_web/features/home/presentation/views/widgets/medicines_view_body.dart';
 
 
@@ -13,7 +12,6 @@ class MedicinesView extends StatelessWidget {
       appBar: AppBar(
         title: Text(classificationName),
       ),
-      drawer: const HomeDrawrer(),
       body:  MedicinesViewBody(classificationName: classificationName,),
     );
   }

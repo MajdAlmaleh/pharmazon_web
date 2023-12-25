@@ -1,8 +1,6 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:pharmazon_web/features/order/data/models/order/order.dart';
 
-import 'order.details.dart';
 import 'pharmaceutical.details.dart';
 
 class OrderDetails extends Equatable {

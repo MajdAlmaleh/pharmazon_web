@@ -1,18 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AddTextField extends StatelessWidget {
   final String hintext;
   final void Function() onTap;
- final TextEditingController controller;
+  final TextInputType textInputType;
+  final TextEditingController controller;
 
-  const AddTextField({super.key, required this.hintext, required this.onTap, required this.controller});
+  const AddTextField(
+      {super.key,
+      required this.hintext,
+      required this.onTap,
+      required this.controller,
+      required this.textInputType});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10),
       child: TextFormField(
         controller: controller,
+        keyboardType: textInputType,
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r'^-?[0-9]*')),
+        ],
         decoration: InputDecoration(
           hintText: hintext,
           label: Text(
@@ -39,6 +51,12 @@ class AddTextField extends StatelessWidget {
             ),
           ),
         ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter some text';
+          }
+          return null;
+        },
       ),
     );
   }

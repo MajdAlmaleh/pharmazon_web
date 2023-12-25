@@ -9,7 +9,6 @@ import 'package:pharmazon_web/features/order/data/models/client_model.dart';
 import 'package:pharmazon_web/features/order/data/models/date_model.dart';
 import 'package:pharmazon_web/features/order/data/models/order/order.details.dart';
 import 'package:pharmazon_web/features/order/data/repos/order_repo.dart';
-import 'package:pharmazon_web/generated/intl/messages_ar.dart';
 
 class OrderRepoImpl implements OrderRepo {
   final ApiService _apiService;
@@ -119,7 +118,6 @@ class OrderRepoImpl implements OrderRepo {
             "payment": toState
           }
       );
-      print(data);   
       return Right(data);
     } on Exception catch (e) {
       if (e is DioException) {

@@ -14,6 +14,9 @@ class MedicineDetails extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        title: Text('medicine details for ${medicineModel.commercialName}'),
+      ),
       body: Center(
         child: Container(
           margin: EdgeInsets.only(left: screenWidth * 0.05),
@@ -90,14 +93,16 @@ class MedicineDetails extends StatelessWidget {
                 padding: EdgeInsets.only(
                     right: screenWidth * 0.1, top: screenHeight * 0.05),
                 child: AddTextField(
+                   textInputType: TextInputType.number,
                   controller: controller,
                   onTap: () {
                     BlocProvider.of<EditQuantityCubit>(context).editQuantity(
                         id: (medicineModel.id).toString(),
                         quantity: controller.text);
                     controller.clear();
+
                   },
-                  hintext: 'Edite the quantity',
+                  hintext: 'Edit the quantity',
                 ),
               ),
             ],
@@ -105,34 +110,6 @@ class MedicineDetails extends StatelessWidget {
         ),
       ),
 
-      //     Center(
-      //   child: Card(
-      //     child: Column(
-      //       children: [
-      //         Text(medicineModel.commercialName!),
-      //         Text(medicineModel.calssification!),
-      //         Text(medicineModel.expireDate!),
-      //         Text(medicineModel.id.toString()),
-      //         Text(medicineModel.price.toString()),
-      //         Text(medicineModel.manufactureCompany!),
-      //         Text(medicineModel.quantityAvailable.toString()),
-      //         TextField(
-      //           decoration: const InputDecoration(),
-      //           controller: controller,
-      //         ),
-      //         FloatingActionButton(
-      //           onPressed: () {
-      //             controller.clear();
-      //             BlocProvider.of<EditQuantityCubit>(context).editQuantity(
-      //                 id: (medicineModel.id).toString(),
-      //                 quantity: controller.text);
-      //           },
-      //           child: const Icon(Icons.abc_outlined),
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // )
     );
   }
 }

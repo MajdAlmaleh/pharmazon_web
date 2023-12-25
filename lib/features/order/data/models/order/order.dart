@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import 'pivot.details.dart';
-
 class OrderData extends Equatable {
 	final int? orderId;
  final String? status;

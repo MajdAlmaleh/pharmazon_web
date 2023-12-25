@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pharmazon_web/blocs/language_cubit/language_cubit.dart';
 import 'package:pharmazon_web/blocs/token_cubit/token_cubit.dart';
+import 'package:pharmazon_web/constants.dart';
 import 'package:pharmazon_web/core/utils/app_router.dart';
 import 'package:pharmazon_web/core/utils/service_locator.dart';
 import 'package:pharmazon_web/generated/l10n.dart';
@@ -39,8 +40,11 @@ class Pharmazon extends StatelessWidget {
       builder: (context, state) {
         return MaterialApp.router(
           theme: ThemeData().copyWith(
-              colorScheme:
-                  ColorScheme.fromSeed(seedColor: const Color(0xFF17C381))),
+            appBarTheme: const AppBarTheme(backgroundColor: kAppColor),
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color(0xFF17C381),
+            ),
+          ),
           locale: Locale(state),
           localizationsDelegates: const [
             S.delegate,

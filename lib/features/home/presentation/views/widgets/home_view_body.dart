@@ -1,22 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:pharmazon_web/blocs/language_cubit/language_cubit.dart';
 import 'package:pharmazon_web/blocs/token_cubit/token_cubit.dart';
-import 'package:pharmazon_web/core/utils/api_service.dart';
-import 'package:pharmazon_web/core/utils/app_router.dart';
-import 'package:pharmazon_web/core/utils/functions/custom_snack_bar.dart';
-import 'package:pharmazon_web/core/utils/service_locator.dart';
-import 'package:pharmazon_web/core/widgets/auth_button.dart';
 import 'package:pharmazon_web/core/widgets/custom_error.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
-import 'package:pharmazon_web/features/home/data/repos/home_repo_impl.dart';
-import 'package:pharmazon_web/features/home/presentation/manager/add_item_cubit/add_item_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/classifications_cubit/classifications_cubit.dart';
-import 'package:pharmazon_web/generated/l10n.dart';
 
 import '../../../../../core/widgets/classifications_grid_view.dart';
-import 'add_item.dart';
 
 final formKey = GlobalKey<FormState>();
 
