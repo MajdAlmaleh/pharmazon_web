@@ -24,7 +24,7 @@
 //                 color: const Color(0xFF17C381),
 //               ),
 //             ),
-      
+
 //         ListTile(
 //               leading: const Icon(
 //                 Icons.home,
@@ -34,14 +34,11 @@
 //                 style: TextStyle(fontSize: 15),
 //               ),
 //               onTap: () {
-                
-//                context.go(AppRouter.kHomeView); 
+
+//                context.go(AppRouter.kHomeView);
 //               },
 //             ),
-      
-      
-      
-      
+
 //             ListTile(
 //               onTap: () {
 //                 GoRouter.of(context).pushReplacement(AppRouter.kSearchView);
@@ -72,7 +69,7 @@
 //                 style: TextStyle(fontSize: 15),
 //               ),
 //               onTap: () {
-//                 GoRouter.of(context).pushReplacement(AppRouter.kClientsOrders); 
+//                 GoRouter.of(context).pushReplacement(AppRouter.kClientsOrders);
 //               },
 //             ),
 //             ListTile(

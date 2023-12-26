@@ -143,7 +143,6 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
                                 onPressed: null,
                                 child: Text(S.of(context).unPaid)),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ElevatedButton(
@@ -163,8 +162,7 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
                                     : null,
                                 child: Text(S.of(context).paid)),
                           ),
-
-                               ],
+                        ],
                       ),
               Expanded(
                   child: MedicinesListView(

@@ -32,10 +32,11 @@ class _ClientsViewBodyState extends State<ClientsViewBody> {
               }
               if (state is ClientsSuccess) {
                 if (state.clients.isEmpty) {
-                  return  Center(
-                      child: Center(child: Text(S.of(context).thereIsNoClients)));
+                  return Center(
+                      child:
+                          Center(child: Text(S.of(context).thereIsNoClients)));
                 }
-    
+
                 return Expanded(
                   child: ListView.builder(
                     itemCount: state.clients.length,
@@ -53,9 +54,7 @@ class _ClientsViewBodyState extends State<ClientsViewBody> {
                   ),
                 );
               }
-              return  Center(child: Text(S.of(context).thereIsNoClients));
-    
-        
+              return Center(child: Text(S.of(context).thereIsNoClients));
             },
           ),
         ],

@@ -13,6 +13,6 @@ final class AddItemFailure extends AddItemState {
 }
 
 final class AddItemSuccess extends AddItemState {
-   final String success;
+  final String success;
   AddItemSuccess(this.success);
 }

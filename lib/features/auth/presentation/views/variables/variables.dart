@@ -7,11 +7,11 @@ late String phoneNumber;
 late String password;
 late String username;
 late bool isSignIn;
-  
 
 void Function(String? newValue)? save = (newValue) {};
 
-String? Function(String?, BuildContext)? phoneNumberValidator = (value, context) {
+String? Function(String?, BuildContext)? phoneNumberValidator =
+    (value, context) {
   if (value == null ||
       value.isEmpty ||
       value.trim().length < 10 ||

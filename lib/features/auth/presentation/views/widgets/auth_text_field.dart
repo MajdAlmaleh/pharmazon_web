@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AuthTextField extends StatelessWidget {
-  const AuthTextField( {
+  const AuthTextField({
     super.key,
     required this.phoneNumberValidator,
     required this.onSave,
@@ -33,11 +33,10 @@ class AuthTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: prefixIcon,
-        suffixIcon:suffixIcon,
+        suffixIcon: suffixIcon,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(width: 1),
-          
         ),
         focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 1),

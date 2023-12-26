@@ -5,12 +5,11 @@ import 'package:pharmazon_web/features/order/data/repos/order_repo.dart';
 part 'payment_state.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
-        final OrderRepo orderRepo;
+  final OrderRepo orderRepo;
   PaymentCubit(this.orderRepo) : super(PaymentInitial());
 
-
-
- Future<void> changePayment({required String toState,required String id}) async {
+  Future<void> changePayment(
+      {required String toState, required String id}) async {
     emit(PaymentLoading());
 
     final result = await orderRepo.changePayment(toState: toState, id: id);
@@ -21,7 +20,4 @@ class PaymentCubit extends Cubit<PaymentState> {
       emit(PaymentSuccess(success['message']));
     });
   }
-
-
-
 }

@@ -5,13 +5,12 @@ import 'package:pharmazon_web/features/order/data/repos/order_repo.dart';
 part 'proccess_state_state.dart';
 
 class ProccessStateCubit extends Cubit<ProccessStateState> {
-       final OrderRepo orderRepo;
+  final OrderRepo orderRepo;
 
   ProccessStateCubit(this.orderRepo) : super(ProccessStateInitial());
 
-
-
- Future<void> changeOrderState({required String toState,required String id}) async {
+  Future<void> changeOrderState(
+      {required String toState, required String id}) async {
     emit(ProccessStateLoading());
 
     final result = await orderRepo.changeState(toState: toState, id: id);

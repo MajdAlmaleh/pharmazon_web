@@ -7,14 +7,11 @@ import 'package:pharmazon_web/features/order/data/repos/order_repo.dart';
 part 'dates_state.dart';
 
 class DatesCubit extends Cubit<DatesState> {
-     final OrderRepo orderRepo;
+  final OrderRepo orderRepo;
 
   DatesCubit(this.orderRepo) : super(DatesInitial());
 
-
-  
-
- Future<void> fetchDateFromClient({required ClientModel clientModel}) async {
+  Future<void> fetchDateFromClient({required ClientModel clientModel}) async {
     emit(DatesLoading());
 
     final result = await orderRepo.getDatesFromClient(clientModel: clientModel);
@@ -25,6 +22,4 @@ class DatesCubit extends Cubit<DatesState> {
       emit(DatesSuccess(dates));
     });
   }
-
-  
 }

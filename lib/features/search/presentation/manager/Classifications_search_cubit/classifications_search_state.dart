@@ -8,6 +8,7 @@ sealed class ClassificationsSearchState extends Equatable {
 }
 
 final class ClassificationsSearchInitial extends ClassificationsSearchState {}
+
 final class ClassificationsSearchLoading extends ClassificationsSearchState {}
 
 final class ClassificationsSearchFailure extends ClassificationsSearchState {

@@ -6,6 +6,7 @@ import 'package:pharmazon_web/core/errors/failures.dart';
 import 'package:pharmazon_web/core/utils/api_service.dart';
 import 'package:pharmazon_web/features/auth/data/repos/auth_repo.dart';
 import 'package:universal_platform/universal_platform.dart';
+
 class AuthRepoImpl implements AuthRepo {
   final ApiService _apiService;
   final TokenCubit tokenCubit = TokenCubit();
@@ -14,7 +15,6 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, Map<String, dynamic>>> signInWithEmailAndPassword(
       {required String phoneNumber, required String password}) async {
-
     try {
       final response = await _apiService.post(
         url: '$kBaseUrl/login',
@@ -42,7 +42,6 @@ class AuthRepoImpl implements AuthRepo {
       {required String username,
       required String phoneNumber,
       required String password}) async {
-
     try {
       final response = await _apiService.post(
         url: '$kBaseUrl/signup', // Replace with your register endpoint

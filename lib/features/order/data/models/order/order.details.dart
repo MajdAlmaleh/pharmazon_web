@@ -8,10 +8,10 @@ class OrderDetails extends Equatable {
   final OrderData? order;
   final List<Pharmaceutical>? pharmaceuticals;
 
-  const OrderDetails( {this.order,this.orderDetails, this.pharmaceuticals});
+  const OrderDetails({this.order, this.orderDetails, this.pharmaceuticals});
 
   factory OrderDetails.fromJson(Map<String, dynamic> json) => OrderDetails(
-order: json['order']== null
+        order: json['order'] == null
             ? null
             : OrderData.fromJson(json['order'] as Map<String, dynamic>),
         orderDetails: json['order'] == null
@@ -23,11 +23,10 @@ order: json['order']== null
       );
 
   Map<String, dynamic> toJson() => {
-        
         'order': orderDetails?.toJson(),
         'pharmaceuticals': pharmaceuticals?.map((e) => e.toJson()).toList(),
       };
 
   @override
-  List<Object?> get props => [orderDetails, pharmaceuticals,order];
+  List<Object?> get props => [orderDetails, pharmaceuticals, order];
 }

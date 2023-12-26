@@ -16,12 +16,8 @@ final class PaymentFailure extends PaymentState {
   const PaymentFailure({required this.errMessage});
 }
 
-
 final class PaymentSuccess extends PaymentState {
- 
   final String payment;
-
 
   const PaymentSuccess(this.payment);
 }
-

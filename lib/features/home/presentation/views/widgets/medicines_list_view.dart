@@ -5,11 +5,11 @@ import 'package:pharmazon_web/core/widgets/medicine_bubble.dart';
 class MedicinesListView extends StatelessWidget {
   final List<Pharmaceutical> medicines;
   final bool isOrder;
-  
+
   const MedicinesListView({
     super.key,
     required this.medicines,
-    this.isOrder=false,
+    this.isOrder = false,
   });
 
   @override
@@ -17,7 +17,10 @@ class MedicinesListView extends StatelessWidget {
     return ListView.builder(
       itemCount: medicines.length,
       itemBuilder: (context, index) {
-        return MedicineBubble(medicineModel: medicines[index],isOrder: isOrder,);
+        return MedicineBubble(
+          medicineModel: medicines[index],
+          isOrder: isOrder,
+        );
       },
     );
   }

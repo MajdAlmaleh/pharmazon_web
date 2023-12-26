@@ -3,15 +3,15 @@ import 'package:equatable/equatable.dart';
 class OrderData extends Equatable {
   final int? orderId;
   final String? status;
-  final String? payment; 
+  final String? payment;
   final String? date;
   final double? totalPrice;
   final int? userId; // Added userId
 
   const OrderData({
-    this.orderId, 
-    this.status, 
-    this.payment, 
+    this.orderId,
+    this.status,
+    this.payment,
     this.date,
     this.totalPrice,
     this.userId, // Added userId
@@ -29,13 +29,13 @@ class OrderData extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-    'order_id': orderId,
-    'Date': date,
-    'payment': payment,
-    'status': status,
-    'total_price': totalPrice,
-    'user_id': userId, // Added userId
-  };
+        'order_id': orderId,
+        'Date': date,
+        'payment': payment,
+        'status': status,
+        'total_price': totalPrice,
+        'user_id': userId, // Added userId
+      };
 
   @override
   List<Object?> get props {

@@ -9,7 +9,6 @@ sealed class ProccessStateState extends Equatable {
 
 final class ProccessStateInitial extends ProccessStateState {}
 
-
 final class ProccessStateLoading extends ProccessStateState {}
 
 final class ProccessStateFailure extends ProccessStateState {
@@ -17,12 +16,8 @@ final class ProccessStateFailure extends ProccessStateState {
   const ProccessStateFailure({required this.errMessage});
 }
 
-
 final class ProccessStateSuccess extends ProccessStateState {
- 
   final String proccessState;
-
 
   const ProccessStateSuccess(this.proccessState);
 }
-

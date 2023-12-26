@@ -17,7 +17,6 @@ class ApiService {
   Future<dynamic> get({
     required String url,
     @required String? token,
-  
   }) async {
     Map<String, String> headers = {};
     if (token != null) {
@@ -25,7 +24,7 @@ class ApiService {
     }
 
     final Response response =
-        await _dio.get(url,options: Options(headers: headers));
+        await _dio.get(url, options: Options(headers: headers));
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return response.data;

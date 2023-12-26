@@ -9,4 +9,4 @@ const kAppColor = Color.fromARGB(255, 16, 123, 190);
 // const kAppColor = Color.fromARGB(255, 3, 228, 142);
 
 const kArabic = 'ar';
-const kEnglish='en';
+const kEnglish = 'en';

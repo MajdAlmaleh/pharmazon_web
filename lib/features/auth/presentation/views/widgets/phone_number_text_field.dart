@@ -13,7 +13,7 @@ class PhoneNumberTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return AuthTextField(
       textInputType: TextInputType.number,
-      phoneNumberValidator: (value) => phoneNumberValidator!(value, context) ,
+      phoneNumberValidator: (value) => phoneNumberValidator!(value, context),
       prefixIcon: const Icon(
         Icons.phone,
         color: kAppColor,
@@ -22,7 +22,7 @@ class PhoneNumberTextField extends StatelessWidget {
         phoneNumber = newValue!;
       },
       formatter: phoneFormatter,
-      hintText: S.of(context).enterYourPhoneNumber ,
+      hintText: S.of(context).enterYourPhoneNumber,
     );
   }
 }

@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
     return MediaQuery.of(context).size.width > 640
         ? null
         : AppBar(
-            title:  Text(S.of(context).pharmazon),
+            title: Text(S.of(context).pharmazon),
           );
   }
 

@@ -24,6 +24,11 @@ import 'package:pharmazon_web/features/order/presentation/manager/order_details_
 import 'package:pharmazon_web/features/order/presentation/views/clinets_view.dart';
 import 'package:pharmazon_web/features/order/presentation/views/dates_view.dart';
 import 'package:pharmazon_web/features/order/presentation/views/order_details_view.dart';
+import 'package:pharmazon_web/features/reports/data/repos/report_repo_impl.dart';
+import 'package:pharmazon_web/features/reports/presentation/manager/quantity_report_cubit/quantity_report_cubit.dart';
+import 'package:pharmazon_web/features/reports/presentation/manager/sales_cubit/sales_report_cubit.dart';
+import 'package:pharmazon_web/features/reports/presentation/views/quantity_report_view.dart';
+import 'package:pharmazon_web/features/reports/presentation/views/sales_report_view.dart';
 import 'package:pharmazon_web/features/search/data/repos/search_repo_impl.dart';
 import 'package:pharmazon_web/features/search/presentation/manager/Classifications_search_cubit/classifications_search_cubit.dart';
 import 'package:pharmazon_web/features/search/presentation/manager/commercial_name_cubit/commercial_name_search_cubit.dart';
@@ -41,6 +46,8 @@ abstract class AppRouter {
   static const kClientsOrders = '/clientsOrders';
   static const kDatesFromClient = '/datesFromClient';
   static const kOrderDetailsFromDate = '/orderDetailsFromDate';
+  static const kSalesReportFromDate = '/salesReportFromDate';
+  static const kQuantityReportFromDate = '/quantityReportFromDate';
 
   static GoRouter setupRouter(String? token) {
     // Create storage
@@ -208,6 +215,38 @@ abstract class AppRouter {
           child: OrderDetailsView(
             dateModel: state.extra as DateModel,
           ),
+        ),
+      ),
+      GoRoute(
+        path: kSalesReportFromDate,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => SalesReportCubit(getIt<ReportRepoImpl>())
+                ..getSalesReportFromDate(
+                    month: int.parse((state.extra as String).split('/')[0]),
+                    year: int.parse((state.extra as String).split('/')[1])),
+            ),
+          ],
+          child: const SalesReportView(
+              // dateModel: state.extra as DateModel,
+              ),
+        ),
+      ),
+      GoRoute(
+        path: kQuantityReportFromDate,
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => QuantityReportCubit(getIt<ReportRepoImpl>())
+                ..getQuantityReportFromDate(
+                    month: int.parse((state.extra as String).split('/')[0]),
+                    year: int.parse((state.extra as String).split('/')[1])),
+            ),
+          ],
+          child: const QuantityReportView(
+              // dateModel: state.extra as DateModel,
+              ),
         ),
       ),
     ]);

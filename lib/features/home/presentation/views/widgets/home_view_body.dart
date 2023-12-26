@@ -19,7 +19,6 @@ class HomeViewBody extends StatefulWidget {
   State<HomeViewBody> createState() => _HomeViewBodyState();
 }
 
-
 class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
@@ -32,7 +31,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     return Expanded(
       child: Column(
         children: [
-         // const AddItem(),
+          // const AddItem(),
           BlocBuilder<ClassificationsCubit, ClassificationsState>(
             builder: (context, state) {
               if (state is ClassificationsLoading) {
@@ -50,9 +49,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 return CustomError(errMessage: state.errMessage);
               }
 
-              return  Expanded(child: Text(S.of(context).ThereIsNoMedicines)
-
-                  );
+              return Expanded(child: Text(S.of(context).ThereIsNoMedicines));
             },
           ),
         ],

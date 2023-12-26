@@ -40,15 +40,13 @@ class OrderRepoImpl implements OrderRepo {
   }
 
   @override
-  Future<Either<Failure, List<DateModel>>> getDatesFromClient({required ClientModel clientModel}) async {
-      try {
+  Future<Either<Failure, List<DateModel>>> getDatesFromClient(
+      {required ClientModel clientModel}) async {
+    try {
       final data = await _apiService.post(
-        url: '$kBaseUrl/getDate',
-        token: tokenCubit.state,
-          body: {
-            "id": clientModel.clientId
-          }
-      );
+          url: '$kBaseUrl/getDate',
+          token: tokenCubit.state,
+          body: {"id": clientModel.clientId});
       List<DateModel> clients = [];
       print(data);
       for (var item in data['order_dates']) {
@@ -63,19 +61,17 @@ class OrderRepoImpl implements OrderRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, OrderDetails>> getOrderDetailsFromDate({required DateModel dateModel}) async{
-        try {
+  Future<Either<Failure, OrderDetails>> getOrderDetailsFromDate(
+      {required DateModel dateModel}) async {
+    try {
       final data = await _apiService.post(
-        url: '$kBaseUrl/getOrder',
-        token: tokenCubit.state,
-          body: {
-            "date": dateModel.date
-          }
-      );
-      OrderDetails orderDetailsModel= OrderDetails.fromJson(data) ;
-      print(data);   
+          url: '$kBaseUrl/getOrder',
+          token: tokenCubit.state,
+          body: {"date": dateModel.date});
+      OrderDetails orderDetailsModel = OrderDetails.fromJson(data);
+      print(data);
       return Right(orderDetailsModel);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -84,20 +80,17 @@ class OrderRepoImpl implements OrderRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, Map<String,dynamic>>> changeState({required String toState,required String id}) async {
-          try {
+  Future<Either<Failure, Map<String, dynamic>>> changeState(
+      {required String toState, required String id}) async {
+    try {
       final data = await _apiService.post(
-        url: '$kBaseUrl/status',
-        token: tokenCubit.state,
-          body: {
-            'id': id,
-            "status": toState
-          }
-      );
-  //    OrderDetails orderDetailsModel= OrderDetails.fromJson(data) ;
-      print(data);   
+          url: '$kBaseUrl/status',
+          token: tokenCubit.state,
+          body: {'id': id, "status": toState});
+      //    OrderDetails orderDetailsModel= OrderDetails.fromJson(data) ;
+      print(data);
       return Right(data);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -106,18 +99,15 @@ class OrderRepoImpl implements OrderRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, Map<String,dynamic>>> changePayment({required String toState,required String id}) async {
-          try {
+  Future<Either<Failure, Map<String, dynamic>>> changePayment(
+      {required String toState, required String id}) async {
+    try {
       final data = await _apiService.post(
-        url: '$kBaseUrl/payment',
-        token: tokenCubit.state,
-          body: {
-            'id': id,
-            "payment": toState
-          }
-      );
+          url: '$kBaseUrl/payment',
+          token: tokenCubit.state,
+          body: {'id': id, "payment": toState});
       return Right(data);
     } on Exception catch (e) {
       if (e is DioException) {

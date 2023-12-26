@@ -7,7 +7,8 @@ import 'package:pharmazon_web/features/auth/presentation/views/variables/variabl
 class SignButton extends StatelessWidget {
   final String text;
   const SignButton({
-    super.key, required this.text,
+    super.key,
+    required this.text,
   });
 
   @override
@@ -27,8 +28,7 @@ class SignButton extends StatelessWidget {
             }
           }
         },
-        text:text,
-     
+        text: text,
       ),
     );
   }

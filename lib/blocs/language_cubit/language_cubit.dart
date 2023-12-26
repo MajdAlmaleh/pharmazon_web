@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageCubit extends Cubit<String> {
   LanguageCubit() : super(kEnglish) {
-    loadLanguage(); 
+    loadLanguage();
   }
 
   Future<void> loadLanguage() async {
@@ -14,11 +14,11 @@ class LanguageCubit extends Cubit<String> {
   }
 
   Future<void> changeLanguage({required String toLanguage}) async {
-   // if (state == toLanguage ==kEnglish) {
-      emit(toLanguage);
-   // } else if (state == kArabic) {
-   //   emit(kEnglish);
-   // }
+    // if (state == toLanguage ==kEnglish) {
+    emit(toLanguage);
+    // } else if (state == kArabic) {
+    //   emit(kEnglish);
+    // }
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('language', state);
   }

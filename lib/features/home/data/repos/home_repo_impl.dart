@@ -22,7 +22,7 @@ class HomeRepoImpl implements HomeRepo {
           body: {
             'api_token': tokenCubit.state,
           },
-          token:  tokenCubit.state
+          token: tokenCubit.state
 
           // Replace with your token if needed
           );
@@ -94,7 +94,8 @@ class HomeRepoImpl implements HomeRepo {
     try {
       final data = await _apiService.post(
         url: '$kBaseUrl/getAllMedicine?calssification=$classification',
-        token: tokenCubit.state, body: null,
+        token: tokenCubit.state,
+        body: null,
       );
       List<Pharmaceutical> medicines = [];
       for (var item in data['medicines']) {

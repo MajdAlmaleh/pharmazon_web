@@ -7,13 +7,14 @@ part 'classifications_search_state.dart';
 
 class ClassificationsSearchCubit extends Cubit<ClassificationsSearchState> {
   final SearchRepo searchRepo;
-  ClassificationsSearchCubit(this.searchRepo) : super(ClassificationsSearchInitial());
+  ClassificationsSearchCubit(this.searchRepo)
+      : super(ClassificationsSearchInitial());
 
-
-  Future<void> searchByClassifications( {required String classification}) async {
+  Future<void> searchByClassifications({required String classification}) async {
     emit(ClassificationsSearchLoading());
 
-    final result = await searchRepo.searchByClassifications(classification: classification);
+    final result = await searchRepo.searchByClassifications(
+        classification: classification);
 
     result.fold((failure) {
       emit(ClassificationsSearchFailure(errMessage: failure.errMessage));
@@ -21,6 +22,4 @@ class ClassificationsSearchCubit extends Cubit<ClassificationsSearchState> {
       emit(ClassificationsSearchSuccess(classifications));
     });
   }
-
-
 }

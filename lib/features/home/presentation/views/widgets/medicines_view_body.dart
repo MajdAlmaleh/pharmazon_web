@@ -8,7 +8,8 @@ import 'package:pharmazon_web/features/home/presentation/views/widgets/medicines
 class MedicinesViewBody extends StatefulWidget {
   final String classificationName;
   const MedicinesViewBody({
-    super.key, required this.classificationName,
+    super.key,
+    required this.classificationName,
   });
 
   @override
@@ -19,7 +20,8 @@ class _MedicinesViewBodyState extends State<MedicinesViewBody> {
   @override
   void initState() {
     BlocProvider.of<MedicineFromClassCubit>(context)
-        .fetchMedicineOfClassification(classification: widget.classificationName);
+        .fetchMedicineOfClassification(
+            classification: widget.classificationName);
 
     super.initState();
   }

@@ -19,7 +19,8 @@ class MedicineDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('${S.of(context).medicineDetailsfor} ${medicineModel.commercialName}'),
+        title: Text(
+            '${S.of(context).medicineDetailsfor} ${medicineModel.commercialName}'),
       ),
       body: Center(
         child: Container(
@@ -43,14 +44,17 @@ class MedicineDetails extends StatelessWidget {
               _buildDetailItem(
                   S.of(context).scientificName, medicineModel.scientificName!),
               _buildDetailItem(
-                   S.of(context).commercialName, medicineModel.commercialName!),
+                  S.of(context).commercialName, medicineModel.commercialName!),
+              _buildDetailItem(S.of(context).manufactureCompany,
+                  medicineModel.manufactureCompany!),
+              _buildDetailItem(S.of(context).quantityAvailable,
+                  medicineModel.quantityAvailable.toString()),
               _buildDetailItem(
-                  S.of(context).manufactureCompany, medicineModel.manufactureCompany!),
+                  S.of(context).expireDate, medicineModel.expireDate!),
               _buildDetailItem(
-                 S.of(context).quantityAvailable, medicineModel.quantityAvailable.toString()),
-              _buildDetailItem(S.of(context).expireDate, medicineModel.expireDate!),
-              _buildDetailItem(S.of(context).price, medicineModel.price.toString()),
-              _buildDetailItem(S.of(context).calssification, medicineModel.calssification!),
+                  S.of(context).price, medicineModel.price.toString()),
+              _buildDetailItem(
+                  S.of(context).calssification, medicineModel.calssification!),
               SizedBox(height: screenHeight * 0.05),
               AddTextField(
                 textInputType: TextInputType.number,
@@ -64,7 +68,8 @@ class MedicineDetails extends StatelessWidget {
                     quantity: controller.text,
                   );
                   controller.clear();
-                  customSnackBar(context, S.of(context).quantityUpdatedSuccessfully);
+                  customSnackBar(
+                      context, S.of(context).quantityUpdatedSuccessfully);
                 },
                 hintext: S.of(context).editTheQuantity,
               ),

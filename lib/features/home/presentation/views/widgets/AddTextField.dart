@@ -35,7 +35,7 @@ class AddTextField extends StatelessWidget {
           ),
           prefixIcon: IconButton(
             icon: const Icon(Icons.edit),
-            color:  kAppColor,
+            color: kAppColor,
             onPressed: onTap,
           ),
           enabledBorder: OutlineInputBorder(

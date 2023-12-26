@@ -13,7 +13,7 @@ class DatesView extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('${S.of(context).datesFor} ${clientModel.clientName} '),
-        ),      
+        ),
         body: const DatesViewBody());
   }
 }

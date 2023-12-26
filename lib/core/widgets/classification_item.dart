@@ -24,8 +24,10 @@ class ClassificationItem extends StatelessWidget {
         elevation: 5,
         child: InkWell(
           onTap: () {
-            GoRouter.of(context)
-                .push(AppRouter.kMedicinesView, extra: classificotionName,);
+            GoRouter.of(context).push(
+              AppRouter.kMedicinesView,
+              extra: classificotionName,
+            );
           },
           child: Column(
             children: [
@@ -42,9 +44,11 @@ class ClassificationItem extends StatelessWidget {
                 ),
               ),
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),color: kAppColor,),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: kAppColor,
+                ),
                 padding: const EdgeInsets.all(8.0),
-                
                 child: Text(
                   classificotionName,
                   style: const TextStyle(fontSize: 20, color: Colors.white),

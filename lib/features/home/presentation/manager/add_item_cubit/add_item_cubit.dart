@@ -27,8 +27,6 @@ class AddItemCubit extends Cubit<AddItemState> {
       quantityAvailable: quantityAvailable,
       expireDate: expireDate,
       price: price,
-      
-
     );
     result.fold((failure) {
       emit(AddItemFailure(errMessage: failure.errMessage));
