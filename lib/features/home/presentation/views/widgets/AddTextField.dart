@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pharmazon_web/constants.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 class AddTextField extends StatelessWidget {
   final String hintext;
@@ -33,27 +35,27 @@ class AddTextField extends StatelessWidget {
           ),
           prefixIcon: IconButton(
             icon: const Icon(Icons.edit),
-            color: const Color(0xFF2AEBA4),
+            color:  kAppColor,
             onPressed: onTap,
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40),
             borderSide: const BorderSide(
-              color: Color(0xFF2AEBA4),
+              color: kAppColor,
               width: 2,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(40),
             borderSide: const BorderSide(
-              color: Color(0xFF2AEBA4),
+              color: kAppColor,
               width: 2,
             ),
           ),
         ),
         validator: (value) {
           if (value == null || value.isEmpty) {
-            return 'Please enter some text';
+            return S.of(context).pleaseEnterSomeText;
           }
           return null;
         },

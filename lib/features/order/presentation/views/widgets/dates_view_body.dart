@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon_web/core/widgets/custom_error.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/dates_cubit/dates_cubit.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 import 'date_list_view_item.dart';
 
@@ -25,8 +26,8 @@ class DatesViewBody extends StatelessWidget {
             }
             if (state is DatesSuccess) {
               if (state.dates.isEmpty) {
-                return const Center(
-                    child: Center(child: Text('there is no orders')));
+                return  Center(
+                    child: Center(child: Text(S.of(context).thereIsNoOrders)));
               }
 
               return Expanded(
@@ -38,7 +39,7 @@ class DatesViewBody extends StatelessWidget {
                 ),
               );
             }
-            return const Center(child: Text('there is no orders'));
+            return  Center(child: Text(S.of(context).thereIsNoOrders));
 
             // return Expanded(
             //   child: ListView.builder(

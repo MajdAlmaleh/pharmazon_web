@@ -17,7 +17,7 @@ class AuthButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF2AEBA4),
+         // backgroundColor: const Color(0xFF2AEBA4),
           minimumSize: Size(MediaQuery.of(context).size.width * .2, 70),
         ),
         child: Text(text),

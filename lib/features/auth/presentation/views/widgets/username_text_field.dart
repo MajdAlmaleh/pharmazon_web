@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pharmazon_web/constants.dart';
 import 'package:pharmazon_web/features/auth/presentation/views/variables/variables.dart';
 import 'package:pharmazon_web/features/auth/presentation/views/widgets/auth_text_field.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 class UsernameTextField extends StatelessWidget {
   const UsernameTextField({
@@ -15,14 +17,14 @@ class UsernameTextField extends StatelessWidget {
         textInputType: TextInputType.text,
         prefixIcon: const Icon(
           Icons.medical_information,
-          color: Color(0xFF2AEBA4),
+          color: kAppColor,
         ),
-        phoneNumberValidator: usernameValidator,
+        phoneNumberValidator:(value) => usernameValidator!(value, context) ,
         onSave: (newValue) {
           username = newValue!;
         },
         formatter: usernameFormatter,
-        hintText: 'Enter your username',
+        hintText:  S.of(context).enterYourUsername,
       ),
     );
   }

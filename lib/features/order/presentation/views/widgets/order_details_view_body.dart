@@ -6,6 +6,7 @@ import 'package:pharmazon_web/features/home/presentation/views/widgets/medicines
 import 'package:pharmazon_web/features/order/presentation/manager/order_details_cubit/order_details_cubit.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/payment_cubit/payment_cubit.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/proccess_cubit/proccess_state_cubit.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 import 'stateful_button.dart';
 
@@ -36,7 +37,7 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
         }
         if (state is OrderDetailsSuccess) {
           if (state.orderDetails.pharmaceuticals!.isEmpty) {
-            return const Text('empty');
+            return Text(S.of(context).ThereIsNoMedicines);
           }
           var orderState = state.orderDetails.order!.status;
 
@@ -52,22 +53,23 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
               child: Column(
             children: [
               if (finalState == 'send')
-                const Text(
-                  'Order delivered successfully',
-                  style: TextStyle(fontSize: 24, color: Colors.green),
+                Text(
+                  S.of(context).orderDeliveredSuccessfully,
+                  style: const TextStyle(fontSize: 24, color: Colors.green),
                 ),
               if (finalState == 'cancel')
-                const Text(
-                  'Order cancelled',
-                  style: TextStyle(fontSize: 24, color: Colors.red),
+                Text(
+                  S.of(context).orderCancelled,
+                  style: const TextStyle(fontSize: 24, color: Colors.red),
                 ),
               if (finalState != 'send' && finalState != 'cancel')
                 Row(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
-                          onPressed: null, child: Text("in process")),
+                          onPressed: null,
+                          child: Text(S.of(context).inProcess)),
                     ),
                     StatefulButton(
                       disableOnStates: const [
@@ -75,7 +77,7 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
                         'send',
                         'cancel'
                       ],
-                      label: "in preparation",
+                      label: S.of(context).inPreparation,
                       finalState: finalState!,
                       toState: 'in preparation',
                       onPressed: () {
@@ -88,7 +90,7 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
                     ),
                     StatefulButton(
                         disableOnStates: const ['send', 'cancel'],
-                        label: "Sent",
+                        label: S.of(context).send,
                         finalState: finalState!,
                         toState: 'send',
                         onPressed: () {
@@ -122,22 +124,24 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
                                   });
                                 }
                               : null,
-                          child: const Text("cancel")),
+                          child: Text(S.of(context).cancel)),
                     ),
                   ],
                 ),
               if (finalState != 'cancel')
                 finalPayment == 'paid' || finalState == 'cancel'
-                    ? const Text(
-                        'Order payment done successfully',
-                        style: TextStyle(fontSize: 20, color: Colors.green),
+                    ? Text(
+                        S.of(context).orderPaymentDoneSuccessfully,
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.green),
                       )
                     : Row(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: ElevatedButton(
-                                onPressed: null, child: Text("un paid")),
+                                onPressed: null,
+                                child: Text(S.of(context).unPaid)),
                           ),
 
                           Padding(
@@ -157,20 +161,10 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
                                                     .toString());
                                       }
                                     : null,
-                                child: const Text("paid")),
+                                child: Text(S.of(context).paid)),
                           ),
 
-                          // StatefulButton(
-                          //     label: 'paid',
-                          //     finalState: finalPayment!,
-                          //     toState: 'paid',
-                          //     onPressed:finalState== 'cancle'? null: () {
-                          //       BlocProvider.of<PaymentCubit>(context).changePayment(
-                          //           toState: 'paid',
-                          //           id: state.orderDetails.order!.orderId.toString());
-                          //     },
-                          //     disableOnStates: const ['paid','cancel']),
-                        ],
+                               ],
                       ),
               Expanded(
                   child: MedicinesListView(
@@ -183,7 +177,7 @@ class _OrderDetailsViewBodyState extends State<OrderDetailsViewBody> {
             ],
           ));
         }
-        return const Center(child: Text('there is no clients'));
+        return Center(child: Text(S.of(context).ThereIsNoMedicines));
       },
     );
   }

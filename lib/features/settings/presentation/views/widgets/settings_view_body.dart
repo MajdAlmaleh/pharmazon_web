@@ -18,11 +18,10 @@ class SettingsViewBody extends StatefulWidget {
 
 class SettingsViewBodyState extends State<SettingsViewBody> {
   List<bool> isSelected = [true, false];
- 
+
   @override
   Widget build(BuildContext context) {
     isSelected = [
-    
       S.of(context).language == 'english',
       S.of(context).language == 'عربي'
     ];
@@ -36,7 +35,7 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
             const SizedBox(
               height: 20,
             ),
-            const Text('Language:'),
+            Text(S.of(context).Language),
             const SizedBox(
               height: 5,
             ),
@@ -44,17 +43,17 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
               height: 3,
               width: MediaQuery.of(context).size.width * .4,
               child: Container(
-                color: const Color.fromARGB(255, 5, 243, 151),
+                color: kAppColor,
               ),
             ),
             const SizedBox(
               height: 5,
             ),
             ToggleButtons(
-              borderColor: const Color.fromARGB(255, 3, 228, 142),
-              fillColor: const Color.fromARGB(255, 3, 228, 142),
+              borderColor: kAppColor,
+              fillColor: kAppColor,
               borderWidth: 2,
-              selectedBorderColor: const Color.fromARGB(255, 3, 228, 142),
+              selectedBorderColor: kAppColor,
               selectedColor: Colors.white,
               borderRadius: BorderRadius.circular(0),
               onPressed: (int index) {
@@ -70,10 +69,6 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
                   BlocProvider.of<LanguageCubit>(context)
                       .changeLanguage(toLanguage: kEnglish);
                 }
-                // BlocProvider.of<LanguageCubit>(context).changeLanguage();
-
-                //     },
-                //     text: S.of(context).language),
               },
               isSelected: isSelected,
               children: const <Widget>[
@@ -83,14 +78,14 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text('Arabic', style: TextStyle(fontSize: 16)),
+                  child: Text('العربية', style: TextStyle(fontSize: 16)),
                 ),
               ],
             ),
             const SizedBox(
               height: 50,
             ),
-            const Text('Log out:'),
+            Text('${S.of(context).LogOut}:'),
             const SizedBox(
               height: 5,
             ),
@@ -98,7 +93,7 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
               height: 3,
               width: MediaQuery.of(context).size.width * .4,
               child: Container(
-                color: const Color.fromARGB(255, 5, 243, 151),
+                color: kAppColor,
               ),
             ),
             const SizedBox(
@@ -112,9 +107,9 @@ class SettingsViewBodyState extends State<SettingsViewBody> {
               leading: const Icon(
                 Icons.logout,
               ),
-              title: const Text(
-                'Logout',
-                style: TextStyle(fontSize: 15),
+              title: Text(
+                S.of(context).LogOut,
+                style: const TextStyle(fontSize: 15),
               ),
             )
           ],

@@ -4,6 +4,7 @@ import 'package:pharmazon_web/features/home/presentation/views/widgets/add_item.
 import 'package:pharmazon_web/features/order/presentation/views/widgets/clients_view_body.dart';
 import 'package:pharmazon_web/features/search/presentation/views/widgets/search_view_body.dart';
 import 'package:pharmazon_web/features/settings/presentation/views/widgets/settings_view_body.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 import 'widgets/home_view_body.dart';
 
@@ -25,9 +26,11 @@ class _HomeViewState extends State<HomeView> {
   ];
 
   PreferredSizeWidget? buildAppBar() {
-    return MediaQuery.of(context).size.width > 640 ? null : AppBar(
-      title: const Text('Pharmazon'),
-    );
+    return MediaQuery.of(context).size.width > 640
+        ? null
+        : AppBar(
+            title:  Text(S.of(context).pharmazon),
+          );
   }
 
   Widget? buildBottomNavigationBar() {
@@ -47,26 +50,26 @@ class _HomeViewState extends State<HomeView> {
                   currentIndex = index;
                 });
               },
-              items: const [
+              items: [
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
+                  icon: const Icon(Icons.home),
+                  label: S.of(context).home,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  label: 'Search',
+                  icon: const Icon(Icons.search),
+                  label: S.of(context).search,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart),
-                  label: 'Cart',
+                  icon: const Icon(Icons.shopping_cart),
+                  label: S.of(context).orders,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.add_box),
-                  label: 'Add Item',
+                  icon: const Icon(Icons.add_box),
+                  label: S.of(context).addItem,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Settings',
+                  icon: const Icon(Icons.settings),
+                  label: S.of(context).settings,
                 ),
               ],
             ),
@@ -84,11 +87,11 @@ class _HomeViewState extends State<HomeView> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  buildDrawerItem(Icons.home, "Home", 0),
-                  buildDrawerItem(Icons.search, "Search", 1),
-                  buildDrawerItem(Icons.shopping_cart, "Orders", 2),
-                  buildDrawerItem(Icons.add_box, "Add Item", 3),
-                  buildDrawerItem(Icons.settings, "Settings", 4),
+                  buildDrawerItem(Icons.home, S.of(context).home, 0),
+                  buildDrawerItem(Icons.search, S.of(context).search, 1),
+                  buildDrawerItem(Icons.shopping_cart, S.of(context).orders, 2),
+                  buildDrawerItem(Icons.add_box, S.of(context).addItem, 3),
+                  buildDrawerItem(Icons.settings, S.of(context).settings, 4),
                 ],
               ),
             ),

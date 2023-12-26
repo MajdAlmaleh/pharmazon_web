@@ -212,32 +212,4 @@ abstract class AppRouter {
       ),
     ]);
   }
-
-  // static final router = GoRouter(routes: [
-  //   GoRoute(
-  //     path: '/',
-  //     builder: (context, state) => const WelcomeView(),
-  //   ),
-  //   GoRoute(
-  //     path: kAuthView,
-  //     builder: (context, state) => BlocProvider(
-  //       create: (context) => AuthCubit(getIt<AuthRepoImpl>()),
-  //       child: AuthView(
-  //         authType: state.extra as String,
-  //       ),
-  //     ),
-  //   ),
-  //   // GoRoute(
-  //   //     path: kBookDetailsView,
-  //   //     builder: (context, state) => BlocProvider(
-  //   //           create: (context) => SimilarBooksCubit(getIt<HomeRepoImpl>()),
-  //   //           child: BookDetailsView(
-  //   //             bookModel: state.extra as BookModel,
-  //   //           ),
-  //   //         )),
-  //   GoRoute(
-  //     path: kHomeView,
-  //     builder: (context, state) => const HomeView(),
-  //   ),
-  // ]);
 }

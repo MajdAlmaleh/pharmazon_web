@@ -16,16 +16,7 @@ class MedicineBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-        //  Card(
-        //   child: ListTile(
-        //     leading: Text(medicineModel.price.toString()),
-        //     title: Text(medicineModel.commercialName!),
-        //     onTap: () {
-        //       GoRouter.of(context)
-        //           .push(AppRouter.kMedicineDetail, extra: medicineModel);
-        //     },
-        //   ),
-        // );
+       
 
         Card(
           child: InkWell(

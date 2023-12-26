@@ -22,7 +22,75 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Language": MessageLookupByLibrary.simpleMessage("اللغة:"),
+        "LogOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+        "Search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "ThereIsNoMedicines":
+            MessageLookupByLibrary.simpleMessage("لا يوجد ادوية"),
+        "add": MessageLookupByLibrary.simpleMessage("إضافة عنصر"),
+        "addItem": MessageLookupByLibrary.simpleMessage("اضافة عنصر"),
+        "addedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تمت الإضافة بنجاح!"),
+        "calssification": MessageLookupByLibrary.simpleMessage("التصنيف"),
+        "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "commercialName": MessageLookupByLibrary.simpleMessage("الاسم التجاري"),
+        "datesFor": MessageLookupByLibrary.simpleMessage("تواريخ طلبيات لـ"),
+        "doNotHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
+        "editTheQuantity": MessageLookupByLibrary.simpleMessage("تعديل الكمية"),
+        "enterYourPassword":
+            MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور الخاصة بك"),
+        "enterYourPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("أدخل رقم هاتفك"),
+        "enterYourUsername":
+            MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم الخاص بك"),
+        "expireDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
+        "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "inPreparation": MessageLookupByLibrary.simpleMessage("في التحضير"),
+        "inProcess": MessageLookupByLibrary.simpleMessage("قيد المعالجة..."),
         "language": MessageLookupByLibrary.simpleMessage("عربي"),
-        "title": MessageLookupByLibrary.simpleMessage("هلوز")
+        "manufactureCompany":
+            MessageLookupByLibrary.simpleMessage("شركة التصنيع"),
+        "medicineDetailsfor":
+            MessageLookupByLibrary.simpleMessage("تفاصيل الدواء لـ"),
+        "orderCancelled":
+            MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب"),
+        "orderDeliveredSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم توصيل الطلب بنجاح"),
+        "orderPaymentDoneSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم دفع الطلب بنجاح"),
+        "orders": MessageLookupByLibrary.simpleMessage("الطلبيات"),
+        "paid": MessageLookupByLibrary.simpleMessage("مدفوع"),
+        "passwordShouldBeAtLest8Characters":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن تكون كلمة المرور 8 أحرف على الأقل"),
+        "pharmazon": MessageLookupByLibrary.simpleMessage("فارمازون"),
+        "phoneNumberShouldBe10DigitsAndStartWith09":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن يكون رقم الهاتف 10 أرقام ويبدأ بـ 09"),
+        "pleaseEnterSomeText":
+            MessageLookupByLibrary.simpleMessage("الرجاء إدخال بعض النص"),
+        "price": MessageLookupByLibrary.simpleMessage("السعر"),
+        "quantityAvailable":
+            MessageLookupByLibrary.simpleMessage("الكمية المتوفرة"),
+        "quantityUpdatedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("تم تحديث الكمية بنجاح"),
+        "scientificName": MessageLookupByLibrary.simpleMessage("الاسم العلمي"),
+        "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "send": MessageLookupByLibrary.simpleMessage("تم الارسال"),
+        "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
+        "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signUp": MessageLookupByLibrary.simpleMessage("تسجيل"),
+        "thereIsNoClients":
+            MessageLookupByLibrary.simpleMessage("لا يوجد عملاء"),
+        "thereIsNoMedicinesToShow":
+            MessageLookupByLibrary.simpleMessage("لا يوجد أدوية للعرض"),
+        "thereIsNoOrders":
+            MessageLookupByLibrary.simpleMessage("لا يوجد طلبات"),
+        "title": MessageLookupByLibrary.simpleMessage("مرحبا بك في فارمازون"),
+        "unPaid": MessageLookupByLibrary.simpleMessage("غير مدفوع"),
+        "usernameShouldBeAtLest10Characters":
+            MessageLookupByLibrary.simpleMessage(
+                "يجب أن يكون الاسم المستخدم 10 أحرف على الأقل")
       };
 }

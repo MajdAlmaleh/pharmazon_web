@@ -5,6 +5,7 @@ import 'package:pharmazon_web/core/utils/app_router.dart';
 import 'package:pharmazon_web/core/widgets/custom_error.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
 import 'package:pharmazon_web/features/order/presentation/manager/clients_cubit/clients_cubit.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 class ClientsViewBody extends StatefulWidget {
   const ClientsViewBody({
@@ -31,8 +32,8 @@ class _ClientsViewBodyState extends State<ClientsViewBody> {
               }
               if (state is ClientsSuccess) {
                 if (state.clients.isEmpty) {
-                  return const Center(
-                      child: Center(child: Text('there is no clients')));
+                  return  Center(
+                      child: Center(child: Text(S.of(context).thereIsNoClients)));
                 }
     
                 return Expanded(
@@ -52,23 +53,9 @@ class _ClientsViewBodyState extends State<ClientsViewBody> {
                   ),
                 );
               }
-              return const Center(child: Text('there is no clients'));
+              return  Center(child: Text(S.of(context).thereIsNoClients));
     
-              // return Expanded(
-              //   child: ListView.builder(
-              //     itemCount: 5,
-              //     itemBuilder: (context, index) {
-              //       return Card(
-              //         child: ListTile(
-              //           title: const Text('state.clients[index].clientName!'),
-              //           onTap: () {
-              //             context.go(AppRouter.kDatesFromClient, extra: ' h');
-              //           },
-              //         ),
-              //       );
-              //     },
-              //   ),
-              // );
+        
             },
           ),
         ],

@@ -4,6 +4,7 @@ import 'package:pharmazon_web/blocs/token_cubit/token_cubit.dart';
 import 'package:pharmazon_web/core/widgets/custom_error.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/classifications_cubit/classifications_cubit.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 import '../../../../../core/widgets/classifications_grid_view.dart';
 
@@ -49,14 +50,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 return CustomError(errMessage: state.errMessage);
               }
 
-              return const Expanded(child: Text('There is no medicines')
+              return  Expanded(child: Text(S.of(context).ThereIsNoMedicines)
 
-                  // AuthButton(
-                  //     onPressed: () async {
-                  //       BlocProvider.of<LanguageCubit>(context)
-                  //           .changeLanguage();
-                  //     },
-                  //     text: S.of(context).language),
                   );
             },
           ),

@@ -5,6 +5,7 @@ import 'package:pharmazon_web/core/widgets/auth_button.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/add_item_cubit/add_item_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/views/widgets/home_view_body.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 late String scientificName;
 late String commerialName;
@@ -35,7 +36,7 @@ class _AddItemState extends State<AddItem> {
             customSnackBar(context, state.errMessage);
           }
           if (state is AddItemSuccess) {
-            customSnackBar(context, 'Added Successfully!');
+            customSnackBar(context, S.of(context).addedSuccessfully);
           }
         },
         builder: (context, state) {
@@ -67,7 +68,7 @@ class _AddItemState extends State<AddItem> {
                           controller.clear();
                         }
                       },
-                      text: 'Add',
+                      text: S.of(context).add,
                     ),
                   ],
                 ),
@@ -81,21 +82,25 @@ class _AddItemState extends State<AddItem> {
 
   List<Widget> _buildTextFormFields(BuildContext context) {
     return [
-      _buildTextFormField('Scientific Name', (value) => scientificName = value),
-      const SizedBox(height: 10),
-      _buildTextFormField('Commercial Name', (value) => commerialName = value),
-      const SizedBox(height: 10),
-      _buildTextFormField('Classification', (value) => calssification = value),
+      _buildTextFormField(
+          S.of(context).scientificName, (value) => scientificName = value),
       const SizedBox(height: 10),
       _buildTextFormField(
-          'Manufacture Company', (value) => manufactureCompany = value),
+          S.of(context).commercialName, (value) => commerialName = value),
       const SizedBox(height: 10),
-      _buildTextFormField('Quantity Available',
+      _buildTextFormField(
+          S.of(context).calssification, (value) => calssification = value),
+      const SizedBox(height: 10),
+      _buildTextFormField(S.of(context).manufactureCompany,
+          (value) => manufactureCompany = value),
+      const SizedBox(height: 10),
+      _buildTextFormField(S.of(context).quantityAvailable,
           (value) => quantityAvailable = int.parse(value)),
       const SizedBox(height: 10),
       _buildDatePicker(context),
       const SizedBox(height: 10),
-      _buildTextFormField('Price', (value) => price = int.parse(value)),
+      _buildTextFormField(
+          S.of(context).price, (value) => price = int.parse(value)),
     ];
   }
 
@@ -107,7 +112,7 @@ class _AddItemState extends State<AddItem> {
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter some text';
+          return S.of(context).pleaseEnterSomeText;
         }
         return null;
       },
@@ -118,13 +123,13 @@ class _AddItemState extends State<AddItem> {
   Widget _buildDatePicker(BuildContext context) {
     return TextFormField(
       controller: controller,
-      decoration: const InputDecoration(
-        labelText: 'Expire Date',
-        border: OutlineInputBorder(),
+      decoration: InputDecoration(
+        labelText: S.of(context).expireDate,
+        border: const OutlineInputBorder(),
       ),
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter some text';
+          return S.of(context).pleaseEnterSomeText;
         }
         return null;
       },
@@ -133,9 +138,7 @@ class _AddItemState extends State<AddItem> {
         final DateTime? picked = await showDatePicker(
           context: context,
           initialDate: DateTime.now(),
-          firstDate: DateTime(
-            2023,10
-          ),
+          firstDate: DateTime(2023, 10),
           lastDate: DateTime(2035),
         );
         if (picked != null) {

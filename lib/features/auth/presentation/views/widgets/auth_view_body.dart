@@ -5,7 +5,6 @@ import 'package:pharmazon_web/constants.dart';
 import 'package:pharmazon_web/core/utils/app_router.dart';
 import 'package:pharmazon_web/core/utils/assets.dart';
 import 'package:pharmazon_web/core/utils/functions/custom_snack_bar.dart';
-import 'package:pharmazon_web/core/widgets/auth_button.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
 import 'package:pharmazon_web/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon_web/features/auth/presentation/views/variables/variables.dart';
@@ -13,8 +12,7 @@ import 'package:pharmazon_web/features/auth/presentation/views/widgets/password_
 import 'package:pharmazon_web/features/auth/presentation/views/widgets/phone_number_text_field.dart';
 import 'package:pharmazon_web/features/auth/presentation/views/widgets/sign_button.dart';
 import 'package:pharmazon_web/features/auth/presentation/views/widgets/username_text_field.dart';
-
-import 'auth_text_field.dart';
+import 'package:pharmazon_web/generated/l10n.dart';
 
 class AuthViewBody extends StatefulWidget {
   const AuthViewBody({
@@ -54,7 +52,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
               Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width * .3,
-                  decoration: const BoxDecoration(color: Color(0xFF2AEBA4)),
+                  decoration: const BoxDecoration(color: kAppColor),
                   child: Image.asset(AssetsData.authPic)),
               Padding(
                 padding: EdgeInsets.only(
@@ -69,7 +67,7 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                         BoxShadow(
                             offset: Offset(20, 20),
                             blurRadius: 10,
-                            color: Color(0xFF2AEBA4))
+                            color: kAppColor)
                       ]),
                   child: ListView(
                     children: [
@@ -79,10 +77,12 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                           bottom: 40,
                         ),
                         child: Text(
-                          isSignIn ? 'Sign In' : 'Sign Up',
+                          isSignIn
+                              ? S.of(context).signIn
+                              : S.of(context).signUp,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              color: Color(0xFF2AEBA4),
+                              color: kAppColor,
                               fontSize: 40,
                               fontWeight: FontWeight.bold,
                               fontFamily: "Pacifico"),
@@ -102,7 +102,10 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                                 hidePassword = !hidePassword;
                               });
                             }),
-                             SignButton(text: isSignIn ? 'Sign In' : 'Sign Up'),
+                            SignButton(
+                                text: isSignIn
+                                    ? S.of(context).signIn
+                                    : S.of(context).signUp),
                             Padding(
                               padding: const EdgeInsets.only(
                                 top: 50,
@@ -112,9 +115,9 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Text(
-                                      "Do not have an account ?",
-                                      style: TextStyle(fontSize: 20),
+                                    Text(
+                                      S.of(context).doNotHaveAnAccount,
+                                      style: const TextStyle(fontSize: 20),
                                     ),
                                     GestureDetector(
                                       onTap: () {
@@ -124,9 +127,11 @@ class _AuthViewBodyState extends State<AuthViewBody> {
                                         });
                                       },
                                       child: Text(
-                                        !isSignIn ? 'Sign In' : 'Sign Up',
+                                        !isSignIn
+                                            ? S.of(context).signIn
+                                            : S.of(context).signUp,
                                         style: const TextStyle(
-                                            color: Colors.green, fontSize: 20),
+                                            color: kAppColor, fontSize: 20),
                                       ),
                                     ),
                                   ],

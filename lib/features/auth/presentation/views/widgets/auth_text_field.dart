@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AuthTextField extends StatelessWidget {
-  const AuthTextField({
+  const AuthTextField( {
     super.key,
     required this.phoneNumberValidator,
     required this.onSave,
