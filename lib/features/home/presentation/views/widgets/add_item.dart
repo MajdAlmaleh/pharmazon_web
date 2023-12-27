@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pharmazon_web/core/utils/functions/custom_snack_bar.dart';
-import 'package:pharmazon_web/core/widgets/auth_button.dart';
+import 'package:pharmazon_web/core/widgets/custom_button.dart';
 import 'package:pharmazon_web/core/widgets/custom_loading.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/add_item_cubit/add_item_cubit.dart';
 import 'package:pharmazon_web/features/home/presentation/views/widgets/home_view_body.dart';
@@ -52,7 +52,7 @@ class _AddItemState extends State<AddItem> {
                   children: [
                     ..._buildTextFormFields(context),
                     const SizedBox(height: 20),
-                    AuthButton(
+                    CustomButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();

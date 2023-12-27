@@ -519,6 +519,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Select Month`
+  String get selectMonth {
+    return Intl.message(
+      'Select Month',
+      name: 'selectMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Year`
+  String get selectYear {
+    return Intl.message(
+      'Select Year',
+      name: 'selectYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Show Report`
+  String get showReport {
+    return Intl.message(
+      'Show Report',
+      name: 'showReport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select month and year`
+  String get pleaseSelectMonthAndYear {
+    return Intl.message(
+      'Please select month and year',
+      name: 'pleaseSelectMonthAndYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reports`
+  String get reports {
+    return Intl.message(
+      'Reports',
+      name: 'reports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no sales for this month`
+  String get thereIsNoMedicinesForThisMonth {
+    return Intl.message(
+      'There is no sales for this month',
+      name: 'thereIsNoMedicinesForThisMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no quantities for this month`
+  String get thereIsNoQuantitiesForThisMonth {
+    return Intl.message(
+      'There is no quantities for this month',
+      name: 'thereIsNoQuantitiesForThisMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Paid for this month:`
+  String get totalPaidForThisMonth {
+    return Intl.message(
+      'Total Paid for this month:',
+      name: 'totalPaidForThisMonth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sales Report of`
+  String get salesReportOf {
+    return Intl.message(
+      'Sales Report of',
+      name: 'salesReportOf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantities Report of`
+  String get quantityReportOf {
+    return Intl.message(
+      'Quantities Report of',
+      name: 'quantityReportOf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sales`
+  String get sales {
+    return Intl.message(
+      'Sales',
+      name: 'sales',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quantities`
+  String get quantities {
+    return Intl.message(
+      'Quantities',
+      name: 'quantities',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AuthButton extends StatelessWidget {
-  const AuthButton({
+class CustomButton extends StatelessWidget {
+  const CustomButton({
     super.key,
     required this.onPressed,
     required this.text,

@@ -228,8 +228,8 @@ abstract class AppRouter {
                     year: int.parse((state.extra as String).split('/')[1])),
             ),
           ],
-          child: const SalesReportView(
-              // dateModel: state.extra as DateModel,
+          child:  SalesReportView(
+               date: state.extra as String,
               ),
         ),
       ),
@@ -244,8 +244,8 @@ abstract class AppRouter {
                     year: int.parse((state.extra as String).split('/')[1])),
             ),
           ],
-          child: const QuantityReportView(
-              // dateModel: state.extra as DateModel,
+          child:  QuantityReportView(
+              date: state.extra as String,
               ),
         ),
       ),

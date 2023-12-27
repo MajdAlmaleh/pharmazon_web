@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pharmazon_web/core/widgets/auth_button.dart';
+import 'package:pharmazon_web/core/widgets/custom_button.dart';
 import 'package:pharmazon_web/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:pharmazon_web/features/auth/presentation/views/variables/variables.dart';
 
@@ -15,7 +15,7 @@ class SignButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30),
-      child: AuthButton(
+      child: CustomButton(
         onPressed: () {
           if (formKey.currentState!.validate()) {
             formKey.currentState!.save();

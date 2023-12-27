@@ -5,7 +5,7 @@ import 'package:pharmazon_web/core/utils/app_router.dart';
 import 'package:pharmazon_web/core/utils/assets.dart';
 import 'package:pharmazon_web/generated/l10n.dart';
 
-import '../../../../core/widgets/auth_button.dart';
+import '../../../../core/widgets/custom_button.dart';
 
 class WelcomeViewBody extends StatelessWidget {
   const WelcomeViewBody({super.key});
@@ -40,7 +40,7 @@ class WelcomeViewBody extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(bottom: 40, top: 60),
-                      child: AuthButton(
+                      child: CustomButton(
                           onPressed: () {
                             GoRouter.of(context).push(
                               AppRouter.kAuthView,
@@ -49,7 +49,7 @@ class WelcomeViewBody extends StatelessWidget {
                           },
                           text: S.of(context).signIn),
                     ),
-                    AuthButton(
+                    CustomButton(
                         onPressed: () {
                           GoRouter.of(context).pushReplacement(
                               AppRouter.kAuthView,

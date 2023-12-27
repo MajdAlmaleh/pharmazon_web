@@ -45,5 +45,18 @@
   "datesFor": "تواريخ طلبيات لـ",
   "Search": "بحث",
   "Language": "اللغة:",
-  "LogOut": "تسجيل الخروج"
+  "LogOut": "تسجيل الخروج",
+  "selectMonth": "اختر الشهر",
+  "selectYear": "اختر السنة",
+  "showReport": "عرض التقرير",
+  "pleaseSelectMonthAndYear": "يرجى تحديد الشهر والسنة",
+  "all": "الكل",
+  "reports": "التقارير",
+  "thereIsNoMedicinesForThisMonth": "لا يوجد مبيعات لهذا الشهر",
+  "thereIsNoQuantitiesForThisMonth":"لا يوجد كميات لهذا الشهر",
+  "totalPaidForThisMonth": "الإجمالي المدفوع لهذا الشهر:",
+  "salesReportOf": "تقرير المبيعات لـ",
+  "quantityReportOf":"تقرير الكميات لـ",
+  "sales": "المبيعات",
+  "quantities": "الكميات"
 }

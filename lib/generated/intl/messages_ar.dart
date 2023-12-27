@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addItem": MessageLookupByLibrary.simpleMessage("اضافة عنصر"),
         "addedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تمت الإضافة بنجاح!"),
+        "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "calssification": MessageLookupByLibrary.simpleMessage("التصنيف"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "commercialName": MessageLookupByLibrary.simpleMessage("الاسم التجاري"),
@@ -70,24 +71,42 @@ class MessageLookup extends MessageLookupByLibrary {
                 "يجب أن يكون رقم الهاتف 10 أرقام ويبدأ بـ 09"),
         "pleaseEnterSomeText":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال بعض النص"),
+        "pleaseSelectMonthAndYear":
+            MessageLookupByLibrary.simpleMessage("يرجى تحديد الشهر والسنة"),
         "price": MessageLookupByLibrary.simpleMessage("السعر"),
+        "quantities": MessageLookupByLibrary.simpleMessage("الكميات"),
         "quantityAvailable":
             MessageLookupByLibrary.simpleMessage("الكمية المتوفرة"),
+        "quantityReportOf":
+            MessageLookupByLibrary.simpleMessage("تقرير الكميات لـ"),
         "quantityUpdatedSuccessfully":
             MessageLookupByLibrary.simpleMessage("تم تحديث الكمية بنجاح"),
+        "reports": MessageLookupByLibrary.simpleMessage("التقارير"),
+        "sales": MessageLookupByLibrary.simpleMessage("المبيعات"),
+        "salesReportOf":
+            MessageLookupByLibrary.simpleMessage("تقرير المبيعات لـ"),
         "scientificName": MessageLookupByLibrary.simpleMessage("الاسم العلمي"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "selectMonth": MessageLookupByLibrary.simpleMessage("اختر الشهر"),
+        "selectYear": MessageLookupByLibrary.simpleMessage("اختر السنة"),
         "send": MessageLookupByLibrary.simpleMessage("تم الارسال"),
         "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
+        "showReport": MessageLookupByLibrary.simpleMessage("عرض التقرير"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "signUp": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "thereIsNoClients":
             MessageLookupByLibrary.simpleMessage("لا يوجد عملاء"),
+        "thereIsNoMedicinesForThisMonth":
+            MessageLookupByLibrary.simpleMessage("لا يوجد مبيعات لهذا الشهر"),
         "thereIsNoMedicinesToShow":
             MessageLookupByLibrary.simpleMessage("لا يوجد أدوية للعرض"),
         "thereIsNoOrders":
             MessageLookupByLibrary.simpleMessage("لا يوجد طلبات"),
+        "thereIsNoQuantitiesForThisMonth":
+            MessageLookupByLibrary.simpleMessage("لا يوجد كميات لهذا الشهر"),
         "title": MessageLookupByLibrary.simpleMessage("مرحبا بك في فارمازون"),
+        "totalPaidForThisMonth": MessageLookupByLibrary.simpleMessage(
+            "الإجمالي المدفوع لهذا الشهر:"),
         "unPaid": MessageLookupByLibrary.simpleMessage("غير مدفوع"),
         "usernameShouldBeAtLest10Characters":
             MessageLookupByLibrary.simpleMessage(

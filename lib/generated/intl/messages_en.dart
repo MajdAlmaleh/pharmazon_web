@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addItem": MessageLookupByLibrary.simpleMessage("Add Item"),
         "addedSuccessfully":
             MessageLookupByLibrary.simpleMessage("Added Successfully!"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "calssification":
             MessageLookupByLibrary.simpleMessage("Calssification"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -73,25 +74,43 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Phone number should be 10 digits and start with 09"),
         "pleaseEnterSomeText":
             MessageLookupByLibrary.simpleMessage("Please enter some text"),
+        "pleaseSelectMonthAndYear": MessageLookupByLibrary.simpleMessage(
+            "Please select month and year"),
         "price": MessageLookupByLibrary.simpleMessage("price"),
+        "quantities": MessageLookupByLibrary.simpleMessage("Quantities"),
         "quantityAvailable":
             MessageLookupByLibrary.simpleMessage("Available Quantity"),
+        "quantityReportOf":
+            MessageLookupByLibrary.simpleMessage("Quantities Report of"),
         "quantityUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Quantity updated successfully"),
+        "reports": MessageLookupByLibrary.simpleMessage("Reports"),
+        "sales": MessageLookupByLibrary.simpleMessage("Sales"),
+        "salesReportOf":
+            MessageLookupByLibrary.simpleMessage("Sales Report of"),
         "scientificName":
             MessageLookupByLibrary.simpleMessage("Scientific Name"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "selectMonth": MessageLookupByLibrary.simpleMessage("Select Month"),
+        "selectYear": MessageLookupByLibrary.simpleMessage("Select Year"),
         "send": MessageLookupByLibrary.simpleMessage("Sent"),
         "settings": MessageLookupByLibrary.simpleMessage("settings"),
+        "showReport": MessageLookupByLibrary.simpleMessage("Show Report"),
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "thereIsNoClients":
             MessageLookupByLibrary.simpleMessage("there is no clients"),
+        "thereIsNoMedicinesForThisMonth": MessageLookupByLibrary.simpleMessage(
+            "There is no sales for this month"),
         "thereIsNoMedicinesToShow": MessageLookupByLibrary.simpleMessage(
             "there is no medicines to show"),
         "thereIsNoOrders":
             MessageLookupByLibrary.simpleMessage("there is no orders"),
+        "thereIsNoQuantitiesForThisMonth": MessageLookupByLibrary.simpleMessage(
+            "There is no quantities for this month"),
         "title": MessageLookupByLibrary.simpleMessage("welcome to pharmazon"),
+        "totalPaidForThisMonth":
+            MessageLookupByLibrary.simpleMessage("Total Paid for this month:"),
         "unPaid": MessageLookupByLibrary.simpleMessage("Un Paid"),
         "usernameShouldBeAtLest10Characters":
             MessageLookupByLibrary.simpleMessage(
