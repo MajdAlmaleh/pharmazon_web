@@ -40,7 +40,7 @@ class SalesReportViewBody extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(double.parse(
-                              (state.saleReportModel.totalSales).toString())
+                              (state.saleReportModel.totalSales)!.toStringAsFixed(2))
                           .toString()),
                       const Spacer(),
                     ],

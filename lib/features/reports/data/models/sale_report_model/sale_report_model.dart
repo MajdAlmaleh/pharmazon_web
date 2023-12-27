@@ -3,14 +3,14 @@ import 'package:equatable/equatable.dart';
 import 'order.dart';
 
 class SaleReportModel extends Equatable {
-  final int? totalSales;
+  final double? totalSales;
   final List<Order>? orders;
 
   const SaleReportModel({this.totalSales, this.orders});
 
   factory SaleReportModel.fromJson(Map<String, dynamic> json) {
     return SaleReportModel(
-      totalSales: json['total_sales'] as int?,
+      totalSales: json['total_sales'] as double?,
       orders: (json['orders'] as List<dynamic>?)
           ?.map((e) => Order.fromJson(e as Map<String, dynamic>))
           .toList(),
