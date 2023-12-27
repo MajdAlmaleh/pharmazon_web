@@ -51,7 +51,8 @@ class ClassificationItem extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   classificotionName,
-                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  maxLines: 1,
+                  style: const TextStyle(fontSize: 20, color: Colors.white,overflow: TextOverflow.ellipsis),
                 ),
               ),
             ],

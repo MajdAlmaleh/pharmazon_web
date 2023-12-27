@@ -29,7 +29,7 @@ void main() async {
     ),
   ));
 }
-
+  
 class Pharmazon extends StatelessWidget {
   const Pharmazon({super.key, required this.router});
   final GoRouter router;
@@ -42,7 +42,7 @@ class Pharmazon extends StatelessWidget {
           theme: ThemeData().copyWith(
             appBarTheme: const AppBarTheme(backgroundColor: kAppColor),
             colorScheme: ColorScheme.fromSeed(
-              seedColor: Color.fromARGB(255, 16, 123, 190),
+              seedColor: kAppColor,
             ),
           ),
           locale: Locale(state),

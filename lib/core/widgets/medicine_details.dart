@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pharmazon_web/constants.dart';
 import 'package:pharmazon_web/core/utils/functions/custom_snack_bar.dart';
 import 'package:pharmazon_web/features/order/data/models/order/pharmaceutical.details.dart';
 import 'package:pharmazon_web/features/home/presentation/manager/edit_quantity_cubit/edit_quantity_cubit.dart';
@@ -34,7 +35,7 @@ class MedicineDetails extends StatelessWidget {
               BoxShadow(
                 offset: Offset(20, 20),
                 blurRadius: 10,
-                color: Color(0xFF2AEBA4),
+                color: kAppColor,
               )
             ],
           ),
