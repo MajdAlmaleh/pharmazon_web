@@ -17,6 +17,6 @@ abstract class HomeRepo {
   Future<Either<Failure, List<ClassificationsModel>>> fetchClassifications();
   Future<Either<Failure, List<Pharmaceutical>>> fetchMedicineOfClassification(
       {required String classification});
-  Future<Either<Failure, Pharmaceutical>> editQuantity(
+  Future<Either<Failure, Map<String,dynamic>>> editQuantity(
       {required String id, required dynamic quantity});
 }

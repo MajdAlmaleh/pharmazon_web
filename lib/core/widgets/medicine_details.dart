@@ -23,58 +23,74 @@ class MedicineDetails extends StatelessWidget {
         title: Text(
             '${S.of(context).medicineDetailsfor} ${medicineModel.commercialName}'),
       ),
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-          height: screenHeight * 0.7,
-          width: screenWidth * 0.5,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: const [
-              BoxShadow(
-                offset: Offset(20, 20),
-                blurRadius: 10,
-                color: kAppColor,
-              )
-            ],
-          ),
-          child: ListView(
-            padding: const EdgeInsets.all(20),
-            children: [
-              _buildDetailItem(
-                  S.of(context).scientificName, medicineModel.scientificName!),
-              _buildDetailItem(
-                  S.of(context).commercialName, medicineModel.commercialName!),
-              _buildDetailItem(S.of(context).manufactureCompany,
-                  medicineModel.manufactureCompany!),
-              _buildDetailItem(S.of(context).quantityAvailable,
-                  medicineModel.quantityAvailable.toString()),
-              _buildDetailItem(
-                  S.of(context).expireDate, medicineModel.expireDate!),
-              _buildDetailItem(
-                  S.of(context).price, medicineModel.price.toString()),
-              _buildDetailItem(
-                  S.of(context).calssification, medicineModel.calssification!),
-              SizedBox(height: screenHeight * 0.05),
-              AddTextField(
-                textInputType: TextInputType.number,
-                controller: controller,
-                onTap: () {
-                  if (controller.text.isEmpty) {
-                    return;
-                  }
-                  BlocProvider.of<EditQuantityCubit>(context).editQuantity(
-                    id: medicineModel.id.toString(),
-                    quantity: controller.text,
-                  );
-                  controller.clear();
-                  customSnackBar(
-                      context, S.of(context).quantityUpdatedSuccessfully);
-                },
-                hintext: S.of(context).editTheQuantity,
-              ),
-            ],
+      body: BlocListener<EditQuantityCubit, EditQuantityState>(
+        listener: (context, state) {
+          
+          if (state is EditQuantitySuccess) {
+            controller.clear();
+            customSnackBar(context, state.editedMedicine['message']);
+
+          }
+          if (state is EditQuantityFailure) {
+            controller.clear();
+            customSnackBar(context, state.errMessage=='Your request not found, Please try later!'?S.of(context).cantEdit:'Your request not found, Please try later!');
+
+          }
+
+        },
+        child: Center(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+            height: screenHeight * 0.7,
+            width: screenWidth * 0.5,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(20, 20),
+                  blurRadius: 10,
+                  color: kAppColor,
+                )
+              ],
+            ),
+            child: ListView(
+              padding: const EdgeInsets.all(20),
+              children: [
+                _buildDetailItem(S.of(context).scientificName,
+                    medicineModel.scientificName!),
+                _buildDetailItem(S.of(context).commercialName,
+                    medicineModel.commercialName!),
+                _buildDetailItem(S.of(context).manufactureCompany,
+                    medicineModel.manufactureCompany!),
+                _buildDetailItem(S.of(context).quantityAvailable,
+                    medicineModel.quantityAvailable.toString()),
+                _buildDetailItem(
+                    S.of(context).expireDate, medicineModel.expireDate!),
+                _buildDetailItem(
+                    S.of(context).price, medicineModel.price.toString()),
+                _buildDetailItem(S.of(context).calssification,
+                    medicineModel.calssification!),
+                SizedBox(height: screenHeight * 0.05),
+                AddTextField(
+                  textInputType: TextInputType.number,
+                  controller: controller,
+                  onTap: () {
+                    if (controller.text.isEmpty) {
+                      return;
+                    }
+                    BlocProvider.of<EditQuantityCubit>(context).editQuantity(
+                      id: medicineModel.id.toString(),
+                      quantity: controller.text,
+                    );
+                  //  controller.clear();
+                 //   customSnackBar(
+                    //    context, S.of(context).quantityUpdatedSuccessfully);
+                  },
+                  hintext: S.of(context).editTheQuantity,
+                ),
+              ],
+            ),
           ),
         ),
       ),

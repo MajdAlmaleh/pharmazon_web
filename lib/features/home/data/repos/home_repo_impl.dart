@@ -112,7 +112,7 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, Pharmaceutical>> editQuantity(
+  Future<Either<Failure, Map<String,dynamic>>> editQuantity(
       {required String id, required dynamic quantity}) async {
     try {
       final response = await _apiService.post(
@@ -122,10 +122,10 @@ class HomeRepoImpl implements HomeRepo {
             "quantity": quantity,
           },
           token: tokenCubit.state);
+//Pharmaceutical.fromJson(response['medicine'])
+    //  String medicines =response ;
 
-      Pharmaceutical medicines = Pharmaceutical.fromJson(response['medicine']);
-
-      return right(medicines);
+      return right(response);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioException(e));

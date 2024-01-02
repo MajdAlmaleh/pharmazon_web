@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "calssification":
             MessageLookupByLibrary.simpleMessage("Calssification"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cantEdit":
+            MessageLookupByLibrary.simpleMessage("Can\'t edit quantity"),
         "commercialName":
             MessageLookupByLibrary.simpleMessage("Commercial Name"),
         "datesFor": MessageLookupByLibrary.simpleMessage("Dates for"),

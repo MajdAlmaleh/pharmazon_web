@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "calssification": MessageLookupByLibrary.simpleMessage("التصنيف"),
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+        "cantEdit":
+            MessageLookupByLibrary.simpleMessage("لا يمكن تعديل الكمية"),
         "commercialName": MessageLookupByLibrary.simpleMessage("الاسم التجاري"),
         "datesFor": MessageLookupByLibrary.simpleMessage("تواريخ طلبيات لـ"),
         "doNotHaveAnAccount":

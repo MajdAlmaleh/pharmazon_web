@@ -58,5 +58,6 @@
 "salesReportOf":"Sales Report of",
 "quantityReportOf":"Quantities Report of",
 "sales":"Sales",
-"quantities":"Quantities"
+"quantities":"Quantities",
+"cantEdit":"Can't edit quantity"
 }

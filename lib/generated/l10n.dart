@@ -649,6 +649,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Can't edit quantity`
+  String get cantEdit {
+    return Intl.message(
+      'Can\'t edit quantity',
+      name: 'cantEdit',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

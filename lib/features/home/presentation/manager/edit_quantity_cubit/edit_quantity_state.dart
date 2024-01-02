@@ -17,6 +17,6 @@ final class EditQuantityFailure extends EditQuantityState {
 }
 
 final class EditQuantitySuccess extends EditQuantityState {
-  final Pharmaceutical editedMedicine;
+  final Map<String,dynamic> editedMedicine;
   const EditQuantitySuccess(this.editedMedicine);
 }
