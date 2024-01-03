@@ -250,10 +250,10 @@ class S {
     );
   }
 
-  /// `Username should be at lest 10 characters`
+  /// `Username should be at lest 4 characters`
   String get usernameShouldBeAtLest10Characters {
     return Intl.message(
-      'Username should be at lest 10 characters',
+      'Username should be at lest 4 characters',
       name: 'usernameShouldBeAtLest10Characters',
       desc: '',
       args: [],

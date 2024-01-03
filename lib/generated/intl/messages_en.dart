@@ -116,6 +116,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "unPaid": MessageLookupByLibrary.simpleMessage("Un Paid"),
         "usernameShouldBeAtLest10Characters":
             MessageLookupByLibrary.simpleMessage(
-                "Username should be at lest 10 characters")
+                "Username should be at lest 4 characters")
       };
 }

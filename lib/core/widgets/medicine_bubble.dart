@@ -29,7 +29,7 @@ class MedicineBubble extends StatelessWidget {
             ),
             trailing: isOrder
                 ? Text(medicineModel.pivot!.quantity.toString())
-                : Text(medicineModel.price.toString()),
+                : Text(medicineModel.quantityAvailable.toString()),
             title: Text(
               medicineModel.scientificName!,
               style: const TextStyle(color: Colors.black, fontSize: 20),
