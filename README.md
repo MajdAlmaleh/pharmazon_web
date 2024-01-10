@@ -26,7 +26,7 @@ Pharmazon is a Flutter project tailored for creating a web admin application . T
   -  Warehouse owner can check the sales and quantities that had been done in a certain month.  
 
 - Code information:
-  - The code is super clean and with using MVVM architecture and BLOC state mangement, and a fully responsive UI.  
+  - The code is super clean and with using MVVM architecture and BLOC state management, and a fully responsive UI.  
 
 ## Additional
 
