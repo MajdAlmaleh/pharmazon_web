@@ -1,16 +1,52 @@
-# pharmazon_web
+# pharmazon - Flutter Web App
 
-A new Flutter project.
+Pharmazon is a Flutter project tailored for creating a web admin application . The web app automates various processes involved in managing a pharmacy warehouse, catering to both warehouse owners and pharmacists.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **User Authentication:**
+  -  Warehouse owner can register and log in using their mobile number.
 
-A few resources to get you started if this is your first Flutter project:
+- **Medicine Management:**
+  - Warehouse owner can add medicines with detailed information such as scientific name, brand name, category, manufacturer, quantity, expiry date, and price.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Browse Medicines:**
+  -  Warehouse owner can browse available medicines in the warehouse based on their categories.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Search Functionality:**
+  -  Warehouse owner can search for specific medicines or categories.
+
+- **Order Placement:**
+  -  Warehouse owner can change orders states .
+
+- **Language Support:**
+  - The application supports both Arabic and English languages.
+
+- Reports:
+  -  Warehouse owner can check the sales and quantities that had been done in a certain month.  
+
+- Code information:
+  - The code is super clean and with using MVVM architecture and BLOC state mangement, and a fully responsive UI.  
+
+## Additional
+
+There is a web admin app to handle the orders and its states.
+
+## Screenshots
+
+![Screenshot 1](screenshots/1.png)
+![Screenshot 2](screenshots/2.png)
+![Screenshot 3](screenshots/3.png)
+![Screenshot 4](screenshots/4.png)
+![Screenshot 5](screenshots/5.png)
+![Screenshot 6](screenshots/6.png)
+![Screenshot 7](screenshots/7.png)
+![Screenshot 8](screenshots/8.png)
+![Screenshot 9](screenshots/9.png)
+![Screenshot 10](screenshots/10.png)
+![Screenshot 11](screenshots/11.png)
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
