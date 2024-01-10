@@ -30,7 +30,7 @@ Pharmazon is a Flutter project tailored for creating a web admin application . T
 
 ## Additional
 
-There is a web admin app to handle the orders and its states.
+This is the admin web app of the [Pharmazon app](https://github.com/MajdAlmaleh/pharmazon) to handle the orders and its states and have a full control of the items in the warehouse.
 
 ## Screenshots
 
